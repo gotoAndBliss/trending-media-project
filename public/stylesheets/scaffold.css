@@ -1,7 +1,7 @@
 body {
   background-color: white;
   color: #333333;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; }
 
@@ -54,6 +54,24 @@ div.field, div.actions {
     font-size: 12px;
     list-style: square; }
 
+.header {
+  background: black;
+  width: 100%; }
+
 #user_nav {
-  float: right;
-  font-size: 12px; }
+  margin: 0 auto;
+  color: white;
+  text-align: right;
+  font-size: 12px;
+  height: 20px;
+  width: 960px; }
+  #user_nav a {
+    color: white; }
+
+.main_nav li {
+  display: inline;
+  list-style-type: none; }
+.main_nav a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold; }

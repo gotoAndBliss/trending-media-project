@@ -1,1 +1,5 @@
-This is my homepage.
+.main_content.grid_10{:style => "border: 1px; solid black;"}
+  - for post in @posts
+    = link_to "#{post.name}", post_path(post)
+    
+  

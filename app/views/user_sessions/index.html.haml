@@ -8,10 +8,10 @@
     %th
     %th
 
-  - @user_sessions.each do |user_session|
+  -#- @user_sessions.each do |user_session|
     %tr
-      %td= user_session.username
-      %td= user_session.password
+      -# %td= user_session.username
+      -# %td= user_session.password
       %td= link_to 'Show', user_session
       %td= link_to 'Edit', edit_user_session_path(user_session)
       %td= link_to 'Destroy', user_session, :confirm => 'Are you sure?', :method => :delete

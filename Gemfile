@@ -8,12 +8,12 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'hpricot'
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 gem 'capistrano'
-gem 'nokogiri', '1.4.1'
+gem 'nokogiri', '1.3.3'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem "haml"
 
-gem 'rspec'
+gem 'rspec', '2.0.0.beta.7'
 gem 'rspec-rails', '2.0.0.beta.7'
 gem "factory_girl"
 gem 'cucumber-rails'
