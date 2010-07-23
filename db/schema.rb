@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20100718171911) do
     t.string   "name"
     t.string   "url"
     t.text     "text"
-    t.string   "category"
+    t.string   "category_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

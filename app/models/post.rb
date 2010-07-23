@@ -1,29 +1,41 @@
 class Post < ActiveRecord::Base
-  belongs_to :user, :touch => true
+  belongs_to            :user, :touch => true
+  belongs_to            :category
+  
+  validates_presence_of :category, :name, :url
+  
+  #validate              :is_a_category?
   
   def time_from_now
-    #-time = DateTime.now.hour - (self.created_at.hour)
-    elapsed_time = (Time.now - self.created_at.to_time)/1.hour
-    hours_past = Fixnum.induced_from(elapsed_time)
+    days_past = (Time.now - self.created_at.to_time)/1.day
+    hours_past = (Time.now - self.created_at.to_time)/1.hour
+    minutes_past = (Time.now - self.created_at.to_time)/1.minute
+    seconds_past = (Time.now - self.created_at.to_time)/1.second
     if hours_past > 23
-      days_past = (Time.now - self.created_at.to_time)/1.day
-      a = Fixnum.induced_from(days_past)
-      day = a > 1 ? "days" : "day"
-      return a.to_s + " " + day.to_s
-    elsif hours_past < 23 && hours_past > 1
-      hour = hours_past > 1 ? "hours" : "hour"
-      return hours_past.to_s + " " + hour
+      time = Fixnum.induced_from(days_past)
+      time_description = days_past > 1 ? "days" : "day"
+    elsif hours_past > 1 && hours_past < 24
+      time = Fixnum.induced_from(hours_past)
+      time_description = hours_past > 1 ? "hours" : "hour"
+    elsif hours_past < 1 && seconds_past > 60
+      time = Fixnum.induced_from(minutes_past)
+      time_description = minutes_past > 1 ? "minutes" : "minute"
     else
-      minutes_past = (Time.now - self.created_at.to_time)/1.minute
-      b = Fixnum.induced_from(minutes_past)
-      minute = b > 1 ? "minutes" : "minute"
-      return b.to_s + " " + minute
+      time = Fixnum.induced_from(seconds_past)
+      time_description = seconds_past > 1 ? "seconds" : "second"
     end
+    return time.to_s + " " + time_description.to_s
   end
   
   def is_a_sexy_link
     @uri = URI.parse(self.url)
     return @uri.host
+  end
+  
+  def is_a_category?
+    unless Post.all.any?{|p| p.category = Category.find(:all).collect { |c| c.name }}
+      errors.add(:category, "Woops! There's no categories with that name.")
+    end
   end
   
 end
