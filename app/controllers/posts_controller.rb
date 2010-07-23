@@ -1,3 +1,5 @@
+require 'uri'
+
 class PostsController < ApplicationController
   
   def index
