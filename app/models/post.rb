@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :category, :name, :url
   
   #validate             :is_a_category?
-  #before_save           :downcase_category
+  #before_save           :prepare_posts
   
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day
@@ -38,8 +38,12 @@ class Post < ActiveRecord::Base
     end
   end
   
-  def downcase_category
+  def prepare_posts
     self.category.downcase
+    if self.url != "" && self.url != nil
+      self.url = "http://" + self.url unless self.url.match /^(https?|ftp):\/\//
+    end
+    self.save
   end
   
 end

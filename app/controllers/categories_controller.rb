@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  
+
+  before_filter :require_user
   
   def show_posts
     @category = Category.find(params[:id])
@@ -84,4 +85,16 @@ class CategoriesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def require_user
+    unless current_user == User.find_by_username("gotoAndBliss")
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to login_url
+      return false
+    end
+  end
+  
 end
