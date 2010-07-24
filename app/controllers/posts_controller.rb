@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     if @post.valid? && current_user.posts << @post
       respond_to do |format|
-        if @post.save
+        if @post.save 
           format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
           format.xml  { render :xml => @post, :status => :created, :location => @post }
         else
@@ -46,6 +46,8 @@ class PostsController < ApplicationController
           format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
         end
       end
+    else
+      render :action => 'new'
     end
   end
 

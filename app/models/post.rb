@@ -3,8 +3,8 @@ class Post < ActiveRecord::Base
   
   validates_presence_of :category, :name, :url
   
-  #validate             :is_a_category?
-  #before_save           :prepare_posts
+  validate              :is_a_category?
+  before_validation     :prepare_posts
   
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day
@@ -33,17 +33,18 @@ class Post < ActiveRecord::Base
   end
   
   def is_a_category?
-    unless Post.all.any?{|p| p.category = Category.find(:all).collect { |c| c.name }}
+    unless Category.exists?(:name => self.category.downcase)
       errors.add(:category, "Woops! There's no categories with that name.")
+      # return false
     end
+    return true
   end
   
   def prepare_posts
-    self.category.downcase
+    self.update_attribute("category", self.category.downcase)
     if self.url != "" && self.url != nil
       self.url = "http://" + self.url unless self.url.match /^(https?|ftp):\/\//
     end
-    self.save
   end
   
 end
