@@ -27,8 +27,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories/new
-  # GET /categories/new.xml
+
   def new
     @category = Category.new
 
@@ -38,13 +37,12 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # GET /categories/1/edit
+
   def edit
     @category = Category.find(params[:id])
   end
 
-  # POST /categories
-  # POST /categories.xml
+
   def create
     @category = Category.new(params[:category])
 
@@ -90,7 +88,7 @@ class CategoriesController < ApplicationController
   private
   
   def require_user
-    unless current_user == User.find_by_username("gotoAndBliss")
+    unless current_user && current_user.username == "gotoAndBliss"
       store_location
       flash[:notice] = "You must be logged in to access this page"
       redirect_to login_url
