@@ -42,7 +42,7 @@ class PostsController < ApplicationController
           format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
           format.xml  { render :xml => @post, :status => :created, :location => @post }
         else
-          format.html { render :action => "new" }
+          format.html { redirect_to new_user_post_path(:current) }
           format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
         end
       end

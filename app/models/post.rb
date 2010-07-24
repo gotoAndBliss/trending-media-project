@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to            :user, :touch => true
   
-  #validates_presence_of :category, :name, :url
+  validates_presence_of :category, :name, :url
   
   #validate             :is_a_category?
   #before_save           :downcase_category
