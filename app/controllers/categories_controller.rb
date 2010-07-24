@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-
-  before_filter :require_user
+  
+  before_filter :require_user, :except => [:show_posts]
   
   def show_posts
     @category = Category.find(params[:id])
@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
   end
   
   def index
+    
     @categories = Category.all
 
     respond_to do |format|
