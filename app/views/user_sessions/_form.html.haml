@@ -8,9 +8,11 @@
 
   .field
     = f.label :username
-    = f.text_field :username
+    %br/
+    = f.text_field :username, :id => "username"
   .field
     = f.label :password
-    = f.password_field :password
+    %br/
+    = f.password_field :password, :id => "password"
   .actions
-    = f.submit 'Save'
+    = f.submit 'Login'

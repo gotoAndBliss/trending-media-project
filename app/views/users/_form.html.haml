@@ -9,7 +9,7 @@
   .field
     = f.label :username
     %br/
-    = f.text_field :username
+    = f.text_field :username, :id => "username"
   .field
     = f.label :email
     %br/
@@ -17,10 +17,10 @@
   .field
     = f.label :password
     %br/
-    = f.password_field :password, :autocomplete => "off"
+    = f.password_field :password, :id => "password", :autocomplete => "off", :value => ""
   .field
     = f.label :password_confirmation
     %br/
-    = f.password_field :password_confirmation, :autocomplete => "off"
+    = f.password_field :password_confirmation, :id => "confirm-password", :autocomplete => "off", :value => ""
   .actions
-    = f.submit 'Save'
+    = f.submit 'Register'
