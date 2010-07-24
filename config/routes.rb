@@ -1,6 +1,6 @@
 Shwagr::Application.routes.draw do |map|
 
-  map.resources :categories
+  map.resources :categories, :member => {:show_posts => :get}
   map.resources :posts
   map.resources :user_sessions
   map.resources :users do |users|

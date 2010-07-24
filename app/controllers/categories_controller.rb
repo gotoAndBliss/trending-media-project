@@ -1,5 +1,11 @@
 class CategoriesController < ApplicationController
   
+  
+  def show_posts
+    @category = Category.find(params[:id])
+    @category_posts = Post.find(:all).select { |p| p.category == @category.name }
+  end
+  
   def index
     @categories = Category.all
 

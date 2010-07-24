@@ -1,10 +1,10 @@
 class Post < ActiveRecord::Base
   belongs_to            :user, :touch => true
-  belongs_to            :category
   
-  validates_presence_of :category, :name, :url
+  #validates_presence_of :category, :name, :url
   
-  #validate              :is_a_category?
+  #validate             :is_a_category?
+  #before_save           :downcase_category
   
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day
@@ -36,6 +36,10 @@ class Post < ActiveRecord::Base
     unless Post.all.any?{|p| p.category = Category.find(:all).collect { |c| c.name }}
       errors.add(:category, "Woops! There's no categories with that name.")
     end
+  end
+  
+  def downcase_category
+    self.category.downcase
   end
   
 end

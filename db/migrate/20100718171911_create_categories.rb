@@ -5,7 +5,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string    :name
       t.string    :url
       t.text      :text
-      t.string    :category_id
+      t.string    :category
       t.integer   :user_id
 
       t.timestamps

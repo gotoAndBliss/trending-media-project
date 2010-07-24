@@ -31,7 +31,7 @@
       .main_nav.grid_10{:style => "margin-top: 35px;"}
         - for category in @categories
           %li
-            = link_to "#{category.name}", category_post_path(category)
+            = link_to "#{category.name}", show_posts_category_path(category)
       .clear
     
       = yield
