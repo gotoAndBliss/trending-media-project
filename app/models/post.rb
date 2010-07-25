@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :category, :name, :url
     
   before_validation     :prepare_posts
-  validate              :is_a_category?, :is_a_real_link?
+  before_save              :is_a_category?
   
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day
@@ -43,17 +43,6 @@ class Post < ActiveRecord::Base
   def prepare_posts
     self.update_attribute("category", self.category.downcase)
     self.url = "http://" + self.url unless self.url.match /^(https?|ftp):\/\//
-  end
-  
-  def is_a_real_link?
-    @url = "http://www." + self.url unless self.url.match /www\./
-    @uri = URI.parse(@url)
-    case Net::HTTP.get_response(@uri)
-      when Net::HTTPSuccess then true
-      else errors.add(:url, ': This is not a real website')
-    end
-    rescue #recover on DNS failures ..
-      errors.add(:url, ': This is not a real website.')
   end
   
 end
