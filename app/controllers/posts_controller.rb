@@ -73,5 +73,37 @@ class PostsController < ApplicationController
       format.html { redirect_to(user_posts_path(current_user), :notice => "Post was deleted.") }
       format.xml  { head :ok }
     end
+  end  
+  
+  def vote_up
+    get_vote
+    @vote.value += 1 unless @vote.value == 1
+    @vote.save
+    respond_to do |format|
+      format.html { redirect_to(root_url, :notice => "Voted Up." ) }
+    end
   end
+  
+  def vote_down
+    get_vote
+    @vote.value -= 1 unless @vote.value == -1
+    @vote.save
+    respond_to do |format|
+      format.html { redirect_to(root_url, :notice => "Voted Down." ) }
+    end
+  end
+  
+  private
+
+  def get_vote
+    #debugger
+    current_post = Post.all.detect{|r| r.id == params[:id].to_i}
+    @post = current_post
+    @vote = current_post.votes.find_by_user_id(current_user.id)
+    unless @vote
+      @vote = Vote.create(:user_id => current_user.id, :value => 0)
+      current_post.votes << @vote
+    end
+  end
+  
 end

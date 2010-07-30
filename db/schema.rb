@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100718171911) do
+ActiveRecord::Schema.define(:version => 20100730021354) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20100718171911) do
     t.string   "name"
     t.string   "url"
     t.text     "text"
-    t.string   "category_id"
+    t.string   "category"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(:version => 20100718171911) do
     t.datetime "last_login_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "value",        :default => 0
   end
 
 end

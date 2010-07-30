@@ -9,12 +9,13 @@ gem 'hpricot'
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 gem 'capistrano'
 gem 'nokogiri', '1.3.3'
-# gem 'aws-s3', :require => 'aws/s3'
-
 gem "haml"
+gem 'ruby-debug'
 
-gem 'rspec', '2.0.0.beta.7'
-gem 'rspec-rails', '2.0.0.beta.7'
+gem 'rspec', '2.0.0.beta.10'
+gem 'rspec-rails', '2.0.0.beta.10'
+gem 'autotest-rails'
+gem 'autotest'
 gem "factory_girl"
 gem 'cucumber-rails'
 gem 'cucumber'

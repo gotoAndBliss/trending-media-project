@@ -1,11 +1,17 @@
 class Post < ActiveRecord::Base
+
   belongs_to            :user, :touch => true
   
   validates_presence_of :category, :name, :url
     
-  before_validation     :prepare_posts
-  before_save              :is_a_category?
+  before_save           :prepare_posts
+  before_save           :category?
   
+  has_many              :votes, :as => :votable
+  has_many              :voting_users,
+                        :through => :votes,
+                        :source => :user
+                    
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day
     hours_past = (Time.now - self.created_at.to_time)/1.hour
@@ -32,7 +38,7 @@ class Post < ActiveRecord::Base
     return @uri.host
   end
   
-  def is_a_category?
+  def category?
     unless Category.exists?(:name => self.category.downcase)
       errors.add(:category, "Woops! There's no categories with that name.")
       # return false
@@ -41,8 +47,12 @@ class Post < ActiveRecord::Base
   end
   
   def prepare_posts
-    self.update_attribute("category", self.category.downcase)
+    self.update_attribute("category", self.category.downcase) unless self.category == self.category.downcase
     self.url = "http://" + self.url unless self.url.match /^(https?|ftp):\/\//
+  end
+  
+  def vote_score
+    self.votes.inject(0){|sum, vote| sum + vote.value}
   end
   
 end

@@ -1,15 +1,20 @@
 .main_content.grid_10{:style => "border: 1px; solid black;"}
   - for post in @posts
     .grid_8.post
-      = link_to "#{post.name}", post_path(post)
-      |
-      (
-      = link_to "#{post.is_a_sexy_link}", post.url
-      )
-      .clear
-      Submitted
-      = post.time_from_now
-      ago by
-      = link_to "#{post.user.username}", user_posts_path(post.user)
-      to
-      = link_to "#{post.category}", ''
+      .grid_1
+        = link_to 'Vote Up', vote_up_post_path(post)
+        %br/
+        = link_to 'Vote Down', vote_down_post_path(post)
+      .grid_6
+        = link_to "#{post.name}", post_path(post)
+        |
+        (
+        = link_to "#{post.is_a_sexy_link}", post.url
+        )
+        .clear
+        Submitted
+        = post.time_from_now
+        ago by
+        = link_to "#{post.user.username}", user_posts_path(post.user)
+        to
+        = link_to "#{post.category}", ''

@@ -10,7 +10,7 @@ $(document).ready(function() {
   
   // Password Chroma-Hash
   
-  $("input:password").chromaHash({number: 3});
+  $("input:password").chromaHash({number: 4});
   $("#username").focus();
     
 });
