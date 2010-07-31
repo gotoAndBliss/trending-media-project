@@ -1,11 +1,16 @@
 require 'spec_helper'
 
 describe User do
-  it "should be able to create a new user" do
-    user = User.new
-    user.username = "Jellyfish"
+  before(:each) do
+    @valid_attributes = {
+      :username => "stinkyfeet",
+      :email => "blastedfingers@dangerous.com",
+      :password => "D1ff1cultPa55w0rd",
+      :password_confirmation => "D1ff1cultPa55w0rd",
+    }
   end
-  it "should be able to change their information" do
-    
+  
+  it "should create a new account given valid attributes" do
+    User.create!(@valid_attributes)
   end
 end

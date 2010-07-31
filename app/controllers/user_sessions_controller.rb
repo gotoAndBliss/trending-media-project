@@ -10,8 +10,10 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Successfully logged in."
       redirect_back_or_default root_url
     else
-      format.html { render :action => "new" }
-      format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @user_session.errors, :status => :unprocessable_entity }
+      end
     end
   end
 

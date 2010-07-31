@@ -1,10 +1,17 @@
 .main_content.grid_10{:style => "border: 1px; solid black;"}
   - for post in @posts
     .grid_8.post
-      .grid_1
-        = link_to 'Vote Up', vote_up_post_path(post)
-        %br/
-        = link_to 'Vote Down', vote_down_post_path(post)
+      .grid_1.alpha{:style => "text-align: center;"}
+        - if current_user
+          = link_to image_tag('vote-up.jpg'), vote_up_post_path(post)
+          .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+            = post.vote_score
+          = link_to image_tag('vote-down.jpg'), vote_down_post_path(post)
+        - else
+          = link_to image_tag('vote-up.jpg'), login_url
+          .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+            = post.vote_score
+          = link_to image_tag('vote-down.jpg'), login_url
       .grid_6
         = link_to "#{post.name}", post_path(post)
         |

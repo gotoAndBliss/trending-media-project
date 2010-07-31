@@ -1,12 +1,14 @@
 $(document).ready(function() {
   
-  // All Posts
-  $(".post").hide();
-  var posts = $(".post"),
-      i = 0;
   (function() {
-    $(posts[i++]).fadeIn('slow', arguments.callee);
+    $(".post").hide().each(function(index){
+      $(this).delay(index * 200).fadeIn(1500, arguments.callee);
+    });
   })();
+
+    
+
+  
   
   // Password Chroma-Hash
   
