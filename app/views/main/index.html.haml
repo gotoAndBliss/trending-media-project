@@ -3,10 +3,10 @@
     .grid_8.post
       .grid_1.alpha{:style => "text-align: center;"}
         - if current_user
-          = link_to image_tag('vote-up.jpg'), vote_up_post_path(post)
+          = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(post)
           .vote_count{:style => "font-size: 14px; font-weight: bold;"}
             = post.vote_score
-          = link_to image_tag('vote-down.jpg'), vote_down_post_path(post)
+          = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post.id && v.value < 0} ? 'vote-down-selected.jpg' : 'vote-down.jpg'), vote_down_post_path(post)
         - else
           = link_to image_tag('vote-up.jpg'), login_url
           .vote_count{:style => "font-size: 14px; font-weight: bold;"}

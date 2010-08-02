@@ -7,4 +7,5 @@ class MainController < ApplicationController
     @user = User.all
   end
   
+  
 end
