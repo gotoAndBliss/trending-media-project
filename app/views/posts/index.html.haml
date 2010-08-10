@@ -1,26 +1,20 @@
-%h1 Listing posts
-
-%table
-  %tr
-    %th Type
-    %th Name
-    %th Url
-    %th Text
-    %th Category
-    %th
-    %th
-    %th
-
+%h1
+%br
+%p
   - @posts.each do |post|
-    %tr
-      %td= post.type
-      %td= post.name
-      %td= post.url
-      %td= post.text
-      %td= post.category
-      %td= link_to 'Show', post
-      %td= link_to 'Edit', edit_post_path(post)
-      %td= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
+    %b
+      = post.name
+    %br/
+    = post.url
+    %br/
+    = post.text
+    %br/
+    = post.category
+    %br/
+    = link_to 'Show', post
+    = link_to 'Edit', edit_post_path(post)
+    = link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
+    %br/
 
 %br
 

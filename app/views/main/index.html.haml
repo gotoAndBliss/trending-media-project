@@ -1,27 +1,3 @@
 .main_content.grid_10{:style => "border: 1px; solid black;"}
-  - for post in @posts
-    .grid_8.post
-      .grid_1.alpha{:style => "text-align: center;"}
-        - if current_user
-          = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(post)
-          .vote_count{:style => "font-size: 14px; font-weight: bold;"}
-            = post.vote_score
-          = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post.id && v.value < 0} ? 'vote-down-selected.jpg' : 'vote-down.jpg'), vote_down_post_path(post)
-        - else
-          = link_to image_tag('vote-up.jpg'), login_url
-          .vote_count{:style => "font-size: 14px; font-weight: bold;"}
-            = post.vote_score
-          = link_to image_tag('vote-down.jpg'), login_url
-      .grid_6
-        = link_to "#{post.name}", post_path(post)
-        |
-        (
-        = link_to "#{post.is_a_sexy_link}", post.url
-        )
-        .clear
-        Submitted
-        = post.time_from_now
-        ago by
-        = link_to "#{post.user.username}", user_posts_path(post.user)
-        to
-        = link_to "#{post.category}", ''
+
+  = render :partial => 'post_view', :collection => @posts

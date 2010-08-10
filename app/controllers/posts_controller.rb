@@ -75,12 +75,16 @@ class PostsController < ApplicationController
     end
   end  
   
+  #def user_posts
+  #  @posts = current_user.posts
+  #end
+  
   def vote_up
     get_vote
     @vote.value += 1 unless @vote.value == 1
     @vote.save
     respond_to do |format|
-      format.html { redirect_to(root_url, :notice => "Voted Up." ) }
+      format.js { render :action => "vote", :layout => false }
     end
   end
   
@@ -89,7 +93,7 @@ class PostsController < ApplicationController
     @vote.value -= 1 unless @vote.value == -1
     @vote.save
     respond_to do |format|
-      format.html { redirect_to(root_url, :notice => "Voted Down." ) }
+      format.js { render :action => "vote" }
     end
   end
   

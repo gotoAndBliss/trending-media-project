@@ -1,0 +1,25 @@
+.grid_8.post{:id => "post_#{post_view.id}"}
+  .grid_1.alpha{:style => "text-align: center;"}
+    - if current_user
+      = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post_view.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(post_view), :class => 'vote'
+      .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+        = post_view.vote_score
+      = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post_view.id && v.value < 0} ? 'vote-down-selected.jpg' : 'vote-down.jpg'), vote_down_post_path(post_view), :class => 'vote'
+    - else
+      = link_to image_tag('vote-up.jpg'), login_url
+      .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+        = post_view.vote_score
+      = link_to image_tag('vote-down.jpg'), login_url
+  .grid_6
+    = link_to "#{post_view.name}", post_path(post_view)
+    |
+    (
+    = link_to "#{post_view.is_a_sexy_link}", post_view.url
+    )
+    .clear
+    Submitted
+    = post_view.time_from_now
+    ago by
+    = link_to "#{post_view.user.username}", user_posts_path(post_view.user)
+    to
+    = link_to "#{post_view.category}", ''
