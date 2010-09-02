@@ -7,6 +7,8 @@ jQuery.fn.submitWithAjax = function() {
 
 $(document).ready(function() {
   
+  // Post Animation 
+  
   (function() {
     $(".post").hide().each(function(index){
       $(this).delay(index * 200).fadeIn(1500, arguments.callee);
@@ -19,6 +21,15 @@ $(document).ready(function() {
   
   $("input:password").chromaHash({number: 4});
   $("#username").focus();
-    
+
+  // Link Posts
+  
+  var toggleTextLink = function() {
+    $(this).unbind('click', toggleTextLink);
+    $(".text_link_toggle").not(this).bind('click', toggleTextLink)
+    $(".text_link").toggle("slow");
+  };
+  $(".text_link_toggle:last").bind('click', toggleTextLink );
+
 });
 
