@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :category, :name, :url
     
   before_save           :prepare_posts
-  before_save           :category?
+  validate              :category?
   
   has_many              :votes, :as => :votable
   has_many              :voting_users,
@@ -41,7 +41,6 @@ class Post < ActiveRecord::Base
   def category?
     unless Category.exists?(:name => self.category.downcase)
       errors.add(:category, "Woops! There's no categories with that name.")
-      # return false
     end
     return true
   end
