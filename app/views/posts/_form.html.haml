@@ -5,6 +5,14 @@
       %ul
         - @post.errors.full_messages.each do |msg|
           %li= msg
+  :javascript
+    $(document).ready(function() {
+    $("input#post_category").autocomplete({
+    
+    source: #{@cat_names}
+    
+    });
+    });
 
   = link_to 'Link', '#', :class => 'text_link_toggle' 
   \/

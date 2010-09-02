@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-
+    @cat_names = Category.all.collect {|c| c.name }.inspect
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }

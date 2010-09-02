@@ -5,6 +5,13 @@ describe PostsController do
   def mock_post(stubs={})
     @mock_post ||= mock_model(Post, stubs).as_null_object
   end
+  
+  describe "#new" do
+    it "should be successful" do
+      get :new
+      response.should be_success
+    end
+  end
 
   describe "GET index" do
     it "assigns all posts as @posts" do
