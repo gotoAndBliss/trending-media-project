@@ -75,10 +75,6 @@ class PostsController < ApplicationController
     end
   end  
   
-  #def user_posts
-  #  @posts = current_user.posts
-  #end
-  
   def vote_up
     get_vote
     @vote.value += 1 unless @vote.value == 1
@@ -100,7 +96,6 @@ class PostsController < ApplicationController
   private
 
   def get_vote
-    #debugger
     current_post = Post.all.detect{|r| r.id == params[:id].to_i}
     @post = current_post
     @vote = current_post.votes.find_by_user_id(current_user.id)

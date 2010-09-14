@@ -11,14 +11,14 @@ Given /^I am an authenticated user$/ do
 end
 
 Given /^that I want to post a link$/ do
-  title = 'My revolutionary post'
-  website_link = "http://www.google.com"
-  category = 'activism'
-  And %{I go to the new post page(#{user})}
-  And %{I fill in "title" with "#{title}"}
-  And %{I fill in "website link" with "#{website_link}"}
-  And %{I fill in "category" with "#{category}"}
-  And %{I press "save"}
+  #title = 'My revolutionary post'
+  #website_link = "http://www.google.com"
+  #category = 'activism'
+  #And %{I go to the new post page(#{user})}
+  #And %{I fill in "title" with "#{title}"}
+  #And %{I fill in "website link" with "#{website_link}"}
+  #And %{I fill in "category" with "#{category}"}
+  #And %{I press "save"}
 end
 
 Then /^I should be redirected to the homepage$/ do

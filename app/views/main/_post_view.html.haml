@@ -12,10 +12,11 @@
       = link_to image_tag('vote-down.jpg'), login_url
   .grid_6
     = link_to "#{post_view.name}", post_path(post_view)
-    |
-    (
-    = link_to "#{post_view.is_a_sexy_link}", post_view.url
-    )
+    - unless post_view.url == "http://"
+      |
+      (
+      = link_to "#{post_view.is_a_sexy_link}", post_view.url
+      )
     .clear
     Submitted
     = post_view.time_from_now

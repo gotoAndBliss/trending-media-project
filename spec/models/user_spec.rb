@@ -13,4 +13,13 @@ describe User do
   it "should create a new account given valid attributes" do
     User.create!(@valid_attributes)
   end
+  
+  it "should succeed creating a new :valid_user from the Factory" do
+    Factory.create(:valid_user)
+  end
+  
+  it "should invalid :invalid_user facotory" do
+    Factory.build(:invalid_user).should be_invalid
+  end
+  
 end

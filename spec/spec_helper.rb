@@ -1,14 +1,17 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
+# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
-require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
+require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'factory_girl'
+require 'authlogic/test_case'
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+include Authlogic::TestCase
 
-Rspec.configure do |config|
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+RSpec.configure do |config|
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -18,19 +21,20 @@ Rspec.configure do |config|
   # config.mock_with :rr
   config.mock_with :rspec
 
-  # If you'd prefer not to run each of your examples within a transaction,
-  # uncomment the following line.
-  # config.use_transactional_examples false
-end
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-# This may break rSpec. Not enitrely sure where to put this but this tests authlogic 
+  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # examples within a transaction, comment the following line or assign false
+  # instead of true.
+  config.use_transactional_fixtures = true
+end
 
 def current_user(stubs = {})
   @current_user ||= mock_model(User, stubs)
 end
 
 def user_session(stubs = {}, user_stubs = {})
-  @current_user_session ||= mock_model(UserSession, {:user => current_user(user_stubs)}.merge(stubs))
+  @current_user ||= mock_model(UserSession, {:user => current_user(user_stubs)}.merge(stubs))
 end
 
 def login(session_stubs = {}, user_stubs = {})
@@ -40,3 +44,8 @@ end
 def logout
   @user_session = nil
 end
+
+def flunk(*args, &block)
+  assertion_delegate.flunk(*args, &block)
+end
+

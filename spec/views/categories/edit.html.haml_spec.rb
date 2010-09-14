@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "categories/edit.html.haml" do
   before(:each) do
-    assign(:category, @category = stub_model(Category,
+    @category = assign(:category, stub_model(Category,
       :new_record? => false,
       :name => "MyString"
     ))

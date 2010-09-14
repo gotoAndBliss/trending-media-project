@@ -1,14 +1,29 @@
-Shwagr::Application.routes.draw do |map|
+Shwagr::Application.routes.draw do
 
-  map.resources :categories, :member => {:show_posts => :get}
-  map.resources :posts, :member => {:vote_up => :get, :vote_down => :get}
-  map.resources :user_sessions
-  map.resources :users do |resc|
-    resc.resources :posts, :collection => {:view => :get}
+  resources :comments
+
+  resources :categories do
+    member do
+      get :show_posts
+    end
   end
-  map.login "login", :controller => "user_sessions", :action => "new"
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
+  resources :posts do
+     member do
+       get :vote_up 
+       get :vote_down
+     end
+  end
+  resources :user_sessions
+  resources :users do
+    resources :posts do
+      collection do
+        get :view
+      end
+    end
+  end
+  match "login", :to => "user_sessions#new", :as => "login"
+  match "logout", :to => "user_sessions#destroy", :as => "logout"
 
-  map.root :controller => 'main'
+  root :to => 'main#index'
   
 end

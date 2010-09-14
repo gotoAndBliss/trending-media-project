@@ -35,13 +35,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = current_user
+    #@user = User.find(params[:id])
   end
 
   # POST /users
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to(root_url, :notice => 'Registration successful.') }
@@ -57,7 +58,8 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = current_user
-
+    #debugger
+    #puts "controller object id is : " + "#{@user.object_id}"
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(root_url, :notice => 'Successfully updated profile.') }
