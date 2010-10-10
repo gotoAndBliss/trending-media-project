@@ -96,9 +96,9 @@ class PostsController < ApplicationController
   private
 
   def get_vote
-    current_post = Post.all.detect{|r| r.id == params[:id].to_i}
+    current_post = Post.find(params[:id])
     @post = current_post
-    @vote = current_post.votes.find_by_user_id(current_user.id)
+    @vote =  current_post.votes.find_by_user_id(current_user.id)
     unless @vote
       @vote = Vote.create(:user_id => current_user.id, :value => 0)
       current_post.votes << @vote

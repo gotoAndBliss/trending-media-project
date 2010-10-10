@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Category do
   before(:each) do
-    @category = Factory.build(:valid_category)
+    @category = Factory.build(:category)
   end
   
   it "should be valid" do

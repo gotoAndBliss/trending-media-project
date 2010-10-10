@@ -1,3 +1,7 @@
+- if @category_posts.empty?
+  .grid_8
+    %h1
+      Nothing to see here. Move along please.
 - for post in @category_posts
   .grid_8.post
     = link_to "#{post.name}", post_path(post)

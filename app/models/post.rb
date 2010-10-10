@@ -3,9 +3,10 @@ class Post < ActiveRecord::Base
   belongs_to            :user, :touch => true
   
   validates_presence_of :category, :name
+  validates_presence_of :url, :unless => Proc.new {|post| post.text}
     
   before_save           :prepare_posts
-  validate              :category?, :url_or_text
+  validate              :category?
   
   
   has_many              :votes, :as => :votable
@@ -40,20 +41,20 @@ class Post < ActiveRecord::Base
   end
   
   def category?
-    unless Category.exists?(:name => self.category.downcase)
-      errors.add(:category, "There's no categories with that name.")
+    if self.category
+      unless Category.exists?(:name => self.category.downcase)
+        errors.add(:category, "There's no categories with that name.")
+      end
+      return true
     end
-    return true
-  end
-  
-  def url_or_text
-    self.url != nil || self.text != nil
   end
   
   def prepare_posts
-    self.update_attribute("category", self.category.downcase) unless self.category == self.category.downcase
-    if self.url?
-      self.url = "http://" + self.url unless self.url.match /^(https?|ftp):\/\//
+    if self.category
+      self.update_attribute("category", self.category.downcase) unless self.category == self.category.downcase
+      if self.url?
+        self.url = "http://" + self.url unless self.url.match /^(https?|ftp):\/\//
+      end
     end
   end
   

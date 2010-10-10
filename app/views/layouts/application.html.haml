@@ -15,29 +15,44 @@
     .header
       .system_messages
         - flash.each do |name,msg|
-          = content_tag :div, msg, :id => "flash_#{name}", :style => "color: #fff; text-align: center; background: #666;"
-      #user_nav
-        - if current_user
-          = link_to "#{current_user.username}", user_posts_path(current_user)
-          |
-          = link_to "Submit a Link", new_user_post_path(:current)
-          |
-          = link_to  "Edit Profile", edit_user_path(:current)
-          |
-          = link_to "Logout", logout_path
-        - else
-          = link_to "Register", new_user_path
-          |
-          = link_to "Login", login_path
+          = content_tag :div, msg, :id => "flash_#{name}", :style => "color: #fff; text-align: center;"
     .container_12
-      .grid_2
-        = link_to 'Shwagr', root_path, :style => "font-size: 38px; font-weight: bold; margin: 20px 0; text-decoration: none;"
-        %p{:style => "text-align: center;"}
-          Be Realistic. Demand the Impossible.
-      .main_nav.grid_10{:style => "margin-top: 35px;"}
+      .clear
+      .sh_header.grid_12.alpha.omega
+        .grid_8.alpha.omega
+          = link_to '', root_path, :style => "margin: 20px 0; height: 100px; width: 310px; display: block;"
+        .grid_4
+          #user_nav
+            - if current_user
+              = image_tag('mail.jpg')
+              = link_to "#{current_user.username}", user_posts_path(current_user)
+              |
+              = link_to  "Edit Profile", edit_user_path(:current)
+              |
+              = link_to "Logout", logout_path
+            - else
+              = link_to "Register", new_user_path
+              |
+              = link_to "Login", login_path
+          .clear
+          .grid_2.submit
+            = link_to "Submit a Link", new_user_post_path(:current)
+      .clear
+      .grid_8
+        = yield
+      .grid_4.omega.sideNav
         - for category in @categories
           %li
             = link_to "#{category.name}", show_posts_category_path(category)
+        %li
+          = link_to 'more', '#'
+        .clear
+        .red_box_of_love
+      
       .clear
-    
-      = yield
+    .footer
+      .footer_body
+        .text
+          Shwagr : [sh·wa·gr] n. an anarcho-aggregator of content related to self-reliability, non-violence, and art. 
+      
+      

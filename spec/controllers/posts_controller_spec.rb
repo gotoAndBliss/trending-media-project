@@ -137,29 +137,41 @@ describe PostsController do
     end
     
     describe "voting on posts" do
-            
-      it "should vote up" do
+      
+      before(:each) do
         @mock_cat = Factory.create(:category)
         Category.stub(:mock_cat)
-        @mock_post = Factory.create(:post)
-        Post.stub(:current_post).and_return(@mock_post)
-        @mock_vote = Factory.create(:vote)
-        Vote.stub(:vote).with("1").and_return(@mock_vote)
+        @post = Factory(:post)
+      end
       
-        get :vote_up, :id => "1"
-        @mock_vote.value.should == 1    
+      it "should vote up" do
+        get :vote_up, :id => @post.id
+        @post.reload.vote_score.should == 1    
       end
       
       it "should vote down" do
+        get :vote_down, :id => @post.id
+        @post.reload.vote_score.should == -1
       end
       
-      it "should not vote up" do
+      describe "vote value should not vote up" do
+        before(:each) do
+          get :vote_up, :id => @post.id
+        end
+        it "should be 1" do
+          get :vote_up, :id => @post.id
+          @post.reload.vote_score.should == 1
+        end
       end
       
-      it "should not vote down" do
-      end
-      
-      it "should redirect via AJAJX" do
+      describe "vote value should not vote down" do
+        before(:each) do
+          get :vote_down, :id => @post.id
+        end
+        it "should not vote down" do
+          get :vote_down, :id => @post.id
+          @post.reload.vote_score.should == -1
+        end
       end
       
     end

@@ -13,25 +13,32 @@
     
     });
     });
-
-  = link_to 'Link', '#', :class => 'text_link_toggle' 
-  \/
-  = link_to 'Text', '#', :class => 'text_link_toggle'
-  .field
-    = f.label :name, 'Title'
-    %br/
-    = f.text_field :name
-  .field.text_link
-    = f.label :url, 'Website Link'
-    %br/
-    = f.text_field :url
-  .field.text_link{:style => "display: none;"}
-    = f.label :text
-    %br/
-    = f.text_area :text
-  .field
-    = f.label :category
-    %br/
-    = f.text_field :category
-  .actions
-    = f.submit 'Save'
+  .post_nav
+    .i
+      = link_to 'Link ', '#', :class => 'text_link_toggle' 
+    .i
+      \&nbsp;or&nbsp;
+    .i
+      = link_to ' Rant', '#', :class => 'text_link_toggle'
+  %br/
+  .field_container.grid_6.alpha
+    .field
+      = f.label :name, 'Title'
+      %br/
+      = f.text_field :name
+    .field.text_link
+      = f.label :url, 'Website Link'
+      %br/
+      = f.text_field :url
+    .field.text_link{:style => "display: none;"}
+      = f.label :text
+      %br/
+      = f.text_area :text
+    .field
+      = f.label :category
+      %br/
+      = f.text_field :category
+    .actions
+      = f.submit 'save', :class => 'button'
+      
+.clear

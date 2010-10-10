@@ -55,35 +55,127 @@ div.field, div.actions {
 
 .header {
   background: black;
+  height: 20px;
   width: 100%; }
 
+.sh_header {
+  background: url("/images/shwagr-header.png") no-repeat;
+  height: 139px; }
+
 #user_nav {
-  margin: 0 auto;
   color: white;
-  text-align: right;
+  display: block;
+  float: right;
   font-size: 12px;
   height: 20px;
-  width: 960px; }
+  margin: 11px 0 0 0;
+  text-align: center;
+  width: 280px; }
   #user_nav a {
     color: white; }
 
-.main_nav li {
-  display: inline;
+.sideNav {
+  background: url("/images/sidebar-line.jpg") left repeat-y;
+  min-height: 600px; }
+
+.sideNav li {
   list-style-type: none; }
-.main_nav a {
+
+.sideNav li a {
   text-decoration: none;
+  font-weight: bold;
   font-size: 14px;
-  font-weight: bold; }
+  margin-left: 10px; }
+
+.red_box_of_love {
+  border: 15px solid #9b4545;
+  display: block;
+  height: 240px;
+  margin-left: 40px;
+  margin-top: 25px;
+  width: 210px; }
+
+.submit a {
+  color: white;
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  height: 35px;
+  margin-left: 24px;
+  margin-top: 46px;
+  padding-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  width: 141px; }
 
 .post {
-  border: 1px solid #666666;
   width: 100%;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
+  background: #f4f4f4;
   margin: 5px 0;
-  padding: 10px 0 5px 15px; }
+  padding: 10px 0 5px 0;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px; }
+
+.post_nav {
+  background: url("/images/post-nav.jpg") no-repeat;
+  height: 43px;
+  width: 391px;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 20px; }
+  .post_nav .i {
+    float: left; }
+    .post_nav .i a {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 0 5px; }
+
+.i .selected-post-nav {
+  background-color: white;
+  height: 43px; }
+  .i .selected-post-nav a {
+    color: #666666; }
+
+.field_container {
+  border: 5px solid #9b4545;
+  padding: 20px; }
+  .field_container textarea {
+    width: 402px; }
+  .field_container input, .field_container textarea {
+    font-size: 20px; }
+  .field_container input:focus, .field_container textarea:focus {
+    border: 5px solid #9b4545; }
 
 .login label {
   font-size: 20px; }
 .login input {
   font-size: 20px; }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #9b4545;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100%;
+  border-bottom: 15px solid black; }
+
+.footer_body {
+  background: url("/images/red-rod.jpg") repeat-y;
+  height: 40px;
+  width: 960px;
+  margin: 0 auto;
+  display: block; }
+  .footer_body .text {
+    padding-top: 10px; }
+
+.button {
+  background: #9b4545;
+  width: 171px;
+  height: 37px;
+  color: white;
+  border: none; }

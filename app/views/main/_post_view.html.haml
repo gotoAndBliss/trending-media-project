@@ -1,4 +1,4 @@
-.grid_8.post{:id => "post_#{post_view.id}"}
+.grid_8.alpha.omega.post{:id => "post_#{post_view.id}"}
   .grid_1.alpha{:style => "text-align: center;"}
     - if current_user
       = link_to image_tag(current_user.votes.any? {|v| v.votable_id == post_view.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(post_view), :class => 'vote'

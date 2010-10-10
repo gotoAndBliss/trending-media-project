@@ -26,10 +26,13 @@ $(document).ready(function() {
   
   var toggleTextLink = function() {
     $(this).unbind('click', toggleTextLink);
-    $(".text_link_toggle").not(this).bind('click', toggleTextLink)
+    $(".text_link_toggle").not(this).bind('click', toggleTextLink);
+    $(".text_link_toggle").not(this).unwrap();
+    $(this).wrap("<div class='selected-post-nav' />")
     $(".text_link").toggle("slow");
   };
   $(".text_link_toggle:last").bind('click', toggleTextLink );
+  $(".text_link_toggle:first").wrap("<div class='selected-post-nav' />")
 
 });
 
