@@ -1,6 +1,6 @@
 Shwagr::Application.routes.draw do
 
-  resources :comments
+  resource :comments
 
   resources :categories do
     member do

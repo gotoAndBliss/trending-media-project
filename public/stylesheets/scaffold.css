@@ -25,6 +25,9 @@ a {
 div.field, div.actions {
   margin-bottom: 10px; }
 
+.container_12 {
+  margin-bottom: 100px; }
+
 #notice {
   color: green; }
 
@@ -112,7 +115,7 @@ div.field, div.actions {
   width: 100%;
   background: #f4f4f4;
   margin: 5px 0;
-  padding: 10px 0 5px 0;
+  padding: 10px 0 5px 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px; }
 

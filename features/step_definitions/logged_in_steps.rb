@@ -7,7 +7,7 @@ Given /^I am an authenticated user$/ do
   And %{I go to the user login page}
   And %{I fill in "username" with "#{name}"}
   And %{I fill in "password" with "#{password}"}
-  And %{I press "Login"}
+  And %{I press "login"}
 end
 
 Given /^that I want to post a link$/ do

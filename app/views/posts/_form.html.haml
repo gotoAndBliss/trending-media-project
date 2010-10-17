@@ -22,6 +22,8 @@
       = link_to ' Rant', '#', :class => 'text_link_toggle'
   %br/
   .field_container.grid_6.alpha
+    .field{:style => "visibility: hidden;"}
+      = f.radio_button :type, true
     .field
       = f.label :name, 'Title'
       %br/

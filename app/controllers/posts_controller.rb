@@ -13,6 +13,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = Post.find(params[:id]).comments
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb

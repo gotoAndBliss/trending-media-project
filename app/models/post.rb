@@ -1,18 +1,21 @@
 class Post < ActiveRecord::Base
-
-  belongs_to            :user, :touch => true
-  
-  validates_presence_of :category, :name
-  validates_presence_of :url, :unless => Proc.new {|post| post.text}
-    
-  before_save           :prepare_posts
-  validate              :category?
-  
-  
-  has_many              :votes, :as => :votable
-  has_many              :voting_users,
-                        :through => :votes,
-                        :source => :user
+                                                                           
+  belongs_to                    :user, :touch => true                            
+                                                                           
+  validates_presence_of         :category, :name                                 
+  validates_presence_of         :url, :unless => Proc.new {|post| post.text}     
+                                                                           
+  before_save                   :prepare_posts                                   
+  validate                      :category?                                       
+                                                                           
+                                                                           
+  has_many                      :votes, :as => :votable                          
+  has_many                      :voting_users,                                   
+                                :through => :votes,                              
+                                :source => :user                                 
+                                                                           
+  has_many                      :comments                                        
+  accepts_nested_attributes_for :comments, :allow_destroy => true
                     
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day

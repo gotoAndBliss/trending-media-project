@@ -1,21 +1,35 @@
 %p
-  %b Type:
-  = @post.type
-%p
   %b Name:
   = @post.name
 %p
   %b Url:
-  = @post.url
+  = link_to @post.is_a_sexy_link, @post.url
 %p
   %b Text:
   = @post.text
 %p
   %b Category:
   = @post.category
+  
+.clear
+.grid_7
+- form_for @post do |f|
+  - f.fields_for :comments, @comment, :url => edit_post_path(@post) do |c|
+    = c.label 'Comments'
+    = c.text_area :text
+    = c.submit 'Submit'
+.clear
+%p
+  Things people say :
+.clear
+.grid_7
+  - for comment in @comments
+    .grid_7.post.alpha.omega
+      = comment.text
+    .clear
 
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Delete', post_path(@post), :method => :delete
 
--#= link_to 'Back', posts_path
+=# TODO : Make these options applicable only for the current_user == post.users
+=# link_to 'Edit', edit_post_path(@post)
+=# link_to 'Delete', post_path(@post), :method => :delete
+

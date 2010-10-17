@@ -159,6 +159,7 @@ DEPENDENCIES
   cucumber
   cucumber-rails
   factory_girl_rails
+  gherkin (= 2.1.5)
   haml-rails
   hpricot
   nokogiri (= 1.3.3)

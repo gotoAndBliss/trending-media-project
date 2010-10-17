@@ -20,3 +20,4 @@ gem "factory_girl_rails"
 gem 'cucumber-rails'
 gem 'cucumber'
 gem 'capybara'
+gem 'gherkin', '2.1.5'
