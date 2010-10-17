@@ -23,7 +23,7 @@
   %br/
   .field_container.grid_6.alpha
     .field{:style => "visibility: hidden;"}
-      = f.radio_button :type, true
+      = f.check_box :is_link, :checked => true
     .field
       = f.label :name, 'Title'
       %br/

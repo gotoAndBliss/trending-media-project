@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(:version => 20100904132433) do
   end
 
   create_table "posts", :force => true do |t|
-    t.boolean   "type"
-    t.string    "name"
-    t.string    "url"
-    t.text      "text"
-    t.string    "category"
-    t.integer   "user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.boolean  "is_link"
+    t.string   "name"
+    t.string   "url"
+    t.text     "text"
+    t.string   "category"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_sessions", :force => true do |t|
@@ -59,12 +59,12 @@ ActiveRecord::Schema.define(:version => 20100904132433) do
   end
 
   create_table "votes", :force => true do |t|
-    t.integer   "user_id"
-    t.integer   "votable_id"
-    t.string    "votable_type"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "value",        :default => 0
+    t.integer  "user_id"
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "value",        :default => 0
   end
 
 end

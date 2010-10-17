@@ -26,10 +26,10 @@ $(document).ready(function() {
   
   var toggleTextLink = function() {
     $(this).unbind('click', toggleTextLink);
-    if ($('#post_type_true').attr('checked') == true) {
-      $('#post_type_true').attr('checked', false);
-    } else if ($('#post_type_true').attr('checked') == false) {
-      $('#post_type_true').attr('checked', true);
+    if ($('#post_is_link').attr('checked') == true) {
+      $('#post_is_link').attr('checked', false);
+    } else if ($('#post_is_link').attr('checked') == false) {
+      $('#post_is_link').attr('checked', true);
     }
     $(".text_link_toggle").not(this).bind('click', toggleTextLink);
     $(".text_link_toggle").not(this).unwrap();

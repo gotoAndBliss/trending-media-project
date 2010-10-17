@@ -1,7 +1,7 @@
 class CreateCategories < ActiveRecord::Migration
   def self.up
     create_table  :posts do |t|
-      t.boolean   :type
+      t.boolean   :is_link
       t.string    :name
       t.string    :url
       t.text      :text
