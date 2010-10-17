@@ -2,23 +2,24 @@
   %b Name:
   = @post.name
 %p
-  %b Url:
-  = link_to @post.is_a_sexy_link, @post.url
-%p
-  %b Text:
-  = @post.text
-%p
-  %b Category:
-  = @post.category
+  - if @post.is_link == true
+    %b Url:
+    = link_to @post.is_a_sexy_link, @post.url
+  - else
+    %b Text:
+    = @post.text
   
 .clear
 .grid_7
 - form_for @post do |f|
   - f.fields_for :comments, @comment, :url => edit_post_path(@post) do |c|
     = c.label 'Comments'
-    = c.text_area :text
+    %br/
+    = c.text_area :text, :style => "height: 100px;"
+    %br/
     = c.submit 'Submit'
 .clear
+%br/
 %p
   Things people say :
 .clear
