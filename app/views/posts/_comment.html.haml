@@ -1,0 +1,16 @@
+.grid_7.post.alpha.omega
+  = comment.text
+  %br/
+  = link_to 'Comment', '#', :class => "comment"
+  %br/
+  .comment_form
+    - form_for [comment, Comment.new] do |f|
+      = f.hidden_field :id, :value => comment.id
+      = f.label 'Comment'
+      %br/
+      = f.text_area :text, :style => "height: 50px;"
+      %br/
+      = f.submit 'Submit'
+  - if comment.comments
+    = render :partial => 'comment', :collection => comment.comments
+.clear

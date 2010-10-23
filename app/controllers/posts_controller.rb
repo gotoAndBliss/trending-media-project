@@ -12,9 +12,11 @@ class PostsController < ApplicationController
   end
 
   def show
+    #debugger
     @post = Post.find(params[:id])
-    @comments = Post.find(params[:id]).comments
-    @comment = Comment.new
+
+    @commentable = find_commentable
+    @comments = @commentable.comments
 
     respond_to do |format|
       format.html # show.html.erb
@@ -36,22 +38,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  #TO DO , fix this bullshit. This shold be a virgin posts controller for create.
   def create
-    @post = Post.new(params[:post])
-    if @post.valid? && current_user.posts << @post
-      respond_to do |format|
-        if @post.save 
-          format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
-          format.xml  { render :xml => @post, :status => :created, :location => @post }
-        else
-          format.html { redirect_to new_user_post_path(:current) }
-          format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
-        end
-      end
+    @post = Post.params[:post]
+    if @post.save
+      flash[:notice] = "Successfully created comment."
+      redirect_to :id => nil
     else
       render :action => 'new'
     end
   end
+
 
   def update
     @post = Post.find(params[:id])
@@ -96,6 +93,17 @@ class PostsController < ApplicationController
   end
   
   private
+
+  def find_commentable
+    params.each do |name, value|
+      if params[:controller] == "comments"
+        return Comment.find(params[:comment][:id])
+      elsif params[:controller] == "posts" 
+        return Post.find(params[:id])
+      end
+    end
+    nil
+  end
 
   def get_vote
     current_post = Post.find(params[:id])

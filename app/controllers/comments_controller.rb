@@ -2,12 +2,9 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.xml
   def index
-    @comments = Comment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @comments }
-    end
+    #debugger
+    @commentable = find_commentable
+    @comments = @commentable.comments
   end
 
   # GET /comments/1
@@ -40,11 +37,19 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.xml
   def create
-    @comment = Comment.new(params[:comment])
+    #debugger
+    @commentable = find_commentable
+    @comment = @commentable.comments.build(params[:comment])
+
+    if @comment.commentable.class == Comment
+      @comment.post_parent_id = @comment.commentable.post_parent_id
+    elsif @comment.commentable.class == Post
+      @comment.post_parent_id = @comment.commentable.id
+    end
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to(@comment, :notice => 'Comment was successfully created.') }
+        format.html { redirect_to post_path(@comment.post_parent_id) }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         format.html { render :action => "new" }
@@ -80,4 +85,16 @@ class CommentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  private
+  
+  def find_commentable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+  end
+  
 end

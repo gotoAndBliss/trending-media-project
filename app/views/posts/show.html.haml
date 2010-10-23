@@ -11,23 +11,19 @@
   
 .clear
 .grid_7
-- form_for @post do |f|
-  - f.fields_for :comments, @comment, :url => edit_post_path(@post) do |c|
-    = c.label 'Comments'
-    %br/
-    = c.text_area :text, :style => "height: 100px;"
-    %br/
-    = c.submit 'Submit'
+- form_for [@commentable, Comment.new] do |f|
+  = f.label :text, 'Comment'
+  %br/
+  = f.text_area :text, :style => "height: 100px;"
+  %br/
+  = f.submit "Submit"
 .clear
 %br/
 %p
   Things people say :
 .clear
 .grid_7
-  - for comment in @comments
-    .grid_7.post.alpha.omega
-      = comment.text
-    .clear
+  = render :partial => 'comment', :collection => @comments
 
 
 =# TODO : Make these options applicable only for the current_user == post.users

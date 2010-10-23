@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
                                 :through => :votes,                              
                                 :source => :user                                 
                                                                            
-  has_many                      :comments                                        
+  has_many                      :comments, :as => :commentable                                        
   accepts_nested_attributes_for :comments, :allow_destroy => true
                     
   def time_from_now

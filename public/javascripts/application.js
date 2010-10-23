@@ -39,5 +39,15 @@ $(document).ready(function() {
   $(".text_link_toggle:last").bind('click', toggleTextLink );
   $(".text_link_toggle:first").wrap("<div class='selected-post-nav' />")
 
+  $(".comment").live("click", function() {
+    if($(this).next().next().is(":visible")) {
+    $(this).next().next().slideUp("slow");
+    } else {
+      $(this).next().next().slideDown("slow");
+    }
+    return false;
+  });
+  
+
 });
 

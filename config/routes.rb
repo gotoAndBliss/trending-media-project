@@ -1,13 +1,16 @@
 Shwagr::Application.routes.draw do
 
-  resource :comments
-
+  resources :comments do
+    resources :comments
+  end
+  
   resources :categories do
     member do
       get :show_posts
     end
   end
   resources :posts do
+    resources :comments
      member do
        get :vote_up 
        get :vote_down

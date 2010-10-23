@@ -182,3 +182,6 @@ div.field, div.actions {
   height: 37px;
   color: white;
   border: none; }
+
+.comment_form {
+  display: none; }

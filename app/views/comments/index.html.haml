@@ -1,19 +1,30 @@
-%h1 Listing comments
+%h1 Listing Comments
 
-%table
-  %tr
-    %th Text
-    %th
-    %th
-    %th
+- form_for [@commentable, Comment.new] do |f|
+  = f.label :text, 'Comment'
+  %br/
+  = f.text_area :text, :style => "height: 100px;"
+  %br/
+  = f.submit "Submit"
+  
+#comments
+  - for comment in @comments
+    .post
+      = comment.text
+      %br/
+      = link_to 'Comment', '#', :class => "comment"
+      %br/
+      -# if comment.comments?.. display for comment in commentdo
+      -#  render :partial => 'comment'  , and I would also load this partial from the partial as well.
+      .comment_form
+        - form_for [comment, Comment.new] do |f|
+          = f.label :text, 'Comment'
+          = f.hidden_field :id, :value => comment.id
+          =# f.hidden_field :created_at, :value => comment.created_at
+          %br/
+          = f.text_area :text, :style => "height: 100px;"
+          %br/
+          = f.submit "Submit"
+      
 
-  - @comments.each do |comment|
-    %tr
-      %td= comment.text
-      %td= link_to 'Show', comment
-      %td= link_to 'Edit', edit_comment_path(comment)
-      %td= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New comment', new_comment_path
+      
