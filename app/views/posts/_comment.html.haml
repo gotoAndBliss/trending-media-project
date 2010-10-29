@@ -1,5 +1,19 @@
-.grid_7.post.alpha.omega
-  = comment.text
+.grid_7.post.alpha.omega{:id => "comment_#{comment.id}"}
+
+  .grid_1.alpha{:style => "text-align: center;"}
+    - if current_user
+      = link_to image_tag(current_user.votes.any? {|v| v.votable_id == comment.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_comment_path(comment), :class => 'vote'
+      .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+        = comment.vote_score
+      = link_to image_tag(current_user.votes.any? {|v| v.votable_id == comment.id && v.value < 0} ? 'vote-down-selected.jpg' : 'vote-down.jpg'), vote_down_comment_path(comment), :class => 'vote'
+    - else
+      = link_to image_tag('vote-up.jpg'), login_url
+      .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+        = comment.vote_score
+      = link_to image_tag('vote-down.jpg'), login_url
+
+
+  =h comment.text
   %br/
   = link_to 'Comment', '#', :class => "comment"
   %br/
@@ -12,5 +26,5 @@
       %br/
       = f.submit 'Submit'
   - if comment.comments
-    = render :partial => 'comment', :collection => comment.comments
+    = render :partial => 'posts/comment', :collection => comment.comments
 .clear

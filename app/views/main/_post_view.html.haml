@@ -24,3 +24,10 @@
     = link_to "#{post_view.user.username}", user_posts_path(post_view.user)
     to
     = link_to "#{post_view.category}", ''
+    %br/
+    = link_to "#{Comment.find(:all, :conditions => ["post_parent_id = ?",post_view.id]).size} Comments", post_path(post_view)
+    
+    
+    
+    
+    

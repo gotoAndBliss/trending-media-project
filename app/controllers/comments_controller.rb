@@ -18,8 +18,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/new
-  # GET /comments/new.xml
   def new
     @comment = Comment.new
 
@@ -29,24 +27,19 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
   end
 
-  # POST /comments
-  # POST /comments.xml
   def create
-    #debugger
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
-
+    @comment.user_id = current_user.id
     if @comment.commentable.class == Comment
       @comment.post_parent_id = @comment.commentable.post_parent_id
     elsif @comment.commentable.class == Post
       @comment.post_parent_id = @comment.commentable.id
     end
-
     respond_to do |format|
       if @comment.save
         format.html { redirect_to post_path(@comment.post_parent_id) }
@@ -58,8 +51,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT /comments/1
-  # PUT /comments/1.xml
   def update
     @comment = Comment.find(params[:id])
 
@@ -74,8 +65,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.xml
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
@@ -83,6 +72,24 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(comments_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def vote_up
+    get_vote
+    @vote.value += 1 unless @vote.value == 1
+    @vote.save
+    respond_to do |format|
+      format.js { render :action => "vote", :layout => false }
+    end
+  end
+  
+  def vote_down
+    get_vote
+    @vote.value -= 1 unless @vote.value == -1
+    @vote.save
+    respond_to do |format|
+      format.js { render :action => "vote", :layout => false }
     end
   end
   
@@ -95,6 +102,16 @@ class CommentsController < ApplicationController
       end
     end
     nil
+  end
+  
+  def get_vote
+    current_comment = Comment.find(params[:id])
+    @comment = current_comment
+    @vote =  current_comment.votes.find_by_user_id(current_user.id)
+    unless @vote
+      @vote = Vote.create(:user_id => current_user.id, :value => 0)
+      current_comment.votes << @vote
+    end
   end
   
 end

@@ -88,7 +88,7 @@ class PostsController < ApplicationController
     @vote.value -= 1 unless @vote.value == -1
     @vote.save
     respond_to do |format|
-      format.js { render :action => "vote" }
+      format.js { render :action => "vote", :layout => false }
     end
   end
   

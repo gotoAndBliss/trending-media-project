@@ -7,14 +7,14 @@
     = link_to @post.is_a_sexy_link, @post.url
   - else
     %b Text:
-    = @post.text
+    =h @post.text
   
 .clear
 .grid_7
 - form_for [@commentable, Comment.new] do |f|
-  = f.label :text, 'Comment'
+  =h f.label :text, 'Comment'
   %br/
-  = f.text_area :text, :style => "height: 100px;"
+  =h f.text_area :text, :style => "height: 100px;"
   %br/
   = f.submit "Submit"
 .clear

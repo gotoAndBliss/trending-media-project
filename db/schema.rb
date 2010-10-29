@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20100904132433) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.string   "post_parent_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
