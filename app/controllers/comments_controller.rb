@@ -1,14 +1,11 @@
 class CommentsController < ApplicationController
-  # GET /comments
-  # GET /comments.xml
+
   def index
-    #debugger
     @commentable = find_commentable
     @comments = @commentable.comments
   end
 
-  # GET /comments/1
-  # GET /comments/1.xml
+
   def show
     @comment = Comment.find(params[:id])
 

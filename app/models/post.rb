@@ -65,4 +65,22 @@ class Post < ActiveRecord::Base
     self.votes.inject(0){|sum, vote| sum + vote.value}
   end
   
+  def shwagrithm
+    a = self.created_at
+    b = Time.parse("October 4 1984 3:54am")
+    ts = a - b
+    if self.vote_score > 0
+      y = 1
+    elsif self.vote_score < 0
+      y = -1
+    else
+      y = 0
+    end
+    z = self.vote_score.abs
+    if z < 1
+      z = 1
+    end
+    rating = 45000 * Math.log10(z) + y * ts
+  end
+  
 end

@@ -12,7 +12,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    #debugger
     @post = Post.find(params[:id])
 
     @commentable = find_commentable
@@ -40,10 +39,10 @@ class PostsController < ApplicationController
 
   #TO DO , fix this bullshit. This shold be a virgin posts controller for create.
   def create
-    @post = Post.params[:post]
+    @post = current_user.posts.create(params[:post])
     if @post.save
       flash[:notice] = "Successfully created comment."
-      redirect_to :id => nil
+      redirect_to post_path(@post)
     else
       render :action => 'new'
     end

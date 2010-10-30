@@ -37,7 +37,7 @@
               = link_to "Login", login_path
           .clear
           .grid_2.submit
-            = link_to "Submit a Link", new_user_post_path(:current)
+            = link_to "Submit a Link", new_user_post_path(current_user.id)
       .clear
       .grid_8
         = yield
