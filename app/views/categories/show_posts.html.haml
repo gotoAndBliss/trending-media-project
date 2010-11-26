@@ -2,20 +2,5 @@
   .grid_8
     %h1
       Nothing to see here. Move along please.
-- for post in @category_posts
-  .grid_8.post
-    - if post.is_link
-      = link_to "#{post.name}", post.url
-    - else
-      = link_to "#{post.name}", post_path(post)
-    |
-    (
-    = link_to "#{post.is_a_sexy_link}", post.url
-    )
-    .clear
-    Submitted
-    = post.time_from_now
-    ago by
-    = link_to "#{post.user.username}", user_posts_path(post.user)
-    to
-    = link_to "#{post.category}", ''
+= render :partial => 'main/post_view', :collection => @category_posts
+ 

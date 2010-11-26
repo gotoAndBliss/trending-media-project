@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   def show_posts
     @category = Category.find(params[:id])
     #@category_posts = Post.find(:all).select { |p| p.category == @category.name }
-    @category_posts = Post.find(:all, :conditions => { :category => @category.name })
+    @category_posts = Post.find(:all, :conditions => { :category => @category.name }).sort {|a,b| b.shwagrithm <=> a.shwagrithm}
   end
   
   def index
