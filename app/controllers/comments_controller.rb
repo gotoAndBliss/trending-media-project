@@ -39,11 +39,16 @@ class CommentsController < ApplicationController
     end
     respond_to do |format|
       if @comment.save
+        
+        @vote = Vote.create(:user_id => current_user.id, :value => 1)
+        @comment.votes << @vote
+        
         format.html { redirect_to post_path(@comment.post_parent_id) }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to post_path(@comment.post_parent_id) }
         format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+        flash[:notice] = "You done messed up."
       end
     end
   end

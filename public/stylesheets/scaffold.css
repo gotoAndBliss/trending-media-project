@@ -12,6 +12,9 @@ p, ol, ul, td {
   font-size: 13px;
   line-height: 18px; }
 
+input, textarea {
+  font-size: 20px; }
+
 pre {
   background-color: #eeeeee;
   padding: 10px;
@@ -146,8 +149,6 @@ div.field, div.actions {
   padding: 20px; }
   .field_container textarea {
     width: 402px; }
-  .field_container input, .field_container textarea {
-    font-size: 20px; }
   .field_container input:focus, .field_container textarea:focus {
     border: 5px solid #9b4545; }
 
