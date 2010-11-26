@@ -3,7 +3,8 @@ require 'uri'
 class PostsController < ApplicationController
   
   def index
-    @posts = Post.all 
+    #@posts = Post.all
+    @posts = Post.find(:all, :order => "created_at DESC") 
 
     respond_to do |format|
       format.html # index.html.erb
