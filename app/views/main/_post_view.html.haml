@@ -12,7 +12,7 @@
       = link_to image_tag('vote-down.jpg'), login_url
   .grid_6
     = link_to "#{post_view.name}", post_path(post_view)
-    - unless post_view.url == "http://"
+    - if post_view.is_link
       |
       (
       = link_to "#{post_view.is_a_sexy_link}", post_view.url

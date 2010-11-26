@@ -10,7 +10,7 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 gem 'capistrano'
 gem 'nokogiri', '1.3.3'
 gem "haml-rails"
-gem 'ruby-debug'
+gem 'ruby-debug', '0.10.4'
 gem 'rack', '1.2.1'
 gem 'rspec', '2.0.0.beta.20'
 gem 'rspec-rails', '2.0.0.beta.20'

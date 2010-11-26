@@ -41,6 +41,9 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.create(params[:post])
     if @post.save
+      @vote = Vote.create(:user_id => current_user.id, :value => 1)
+      @post.votes << @vote
+      
       flash[:notice] = "Successfully created comment."
       redirect_to post_path(@post)
     else
