@@ -29,7 +29,7 @@
     to
     = link_to "#{post.category}", ''
     %br/
-    = link_to "#{Comment.find(:all, :conditions => ["post_parent_id = ?",post.id]).size} Comments", post_path(post)
+    = link_to "#{Comment.all.select{|c|c.post_parent_id == Post.find(1).id}.size} Comments", post_path(post)
     = link_to 'Show', post
     - if current_user == User.find(params[:user_id])
       = link_to 'Edit', edit_post_path(post)
