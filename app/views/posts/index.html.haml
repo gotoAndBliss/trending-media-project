@@ -2,5 +2,5 @@
   = User.find(params[:user_id]).username + "'s Posts and Rants"
 
 -# @posts.each do |post|
-
+= will_paginate @posts
 = render :partial => 'post', :collection => @posts

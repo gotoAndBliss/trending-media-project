@@ -11,10 +11,11 @@
         = post_view.vote_score
       = link_to image_tag('vote-down.jpg'), login_url
   .grid_6
-    - if post_view.is_link
-      = link_to "#{post_view.name}", post_view.url
-    - else
-      = link_to "#{post_view.name}", post_path(post_view)
+    .post_title
+      - if post_view.is_link
+        = link_to "#{post_view.name}", post_view.url
+      - else
+        = link_to "#{post_view.name}", post_path(post_view)
     - if post_view.is_link
       |
       (

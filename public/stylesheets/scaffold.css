@@ -120,9 +120,15 @@ div.field, div.actions {
 .post {
   width: 100%;
   margin: 5px 0;
-  padding: 10px 0 5px 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px; }
+  padding: 10px 0 5px 10px; }
+  .post .post_title a {
+    color: #9b4545;
+    font-weight: bold;
+    text-decoration: none;
+    float: left;
+    margin-right: 4px; }
+  .post .post_title a:hover {
+    color: black; }
 
 .post_nav {
   background: url("/images/post-nav.jpg") no-repeat;
@@ -188,3 +194,11 @@ div.field, div.actions {
 
 .comment_form {
   display: none; }
+
+.pagination {
+  float: right;
+  font-size: 16px; }
+  .pagination a {
+    text-decoration: none; }
+  .pagination em {
+    color: #9b4545; }
