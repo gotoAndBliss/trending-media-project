@@ -1,13 +1,12 @@
 %p
-  %b Name:
-  = @post.name
-%p
-  - if @post.is_link == true
-    %b Url:
-    = link_to @post.is_a_sexy_link, @post.url
+  - if @post.is_link
+    .headline
+      = link_to @post.name, @post.url
   - else
-    %b Text:
-    =h @post.text
+    .headline
+      = @post.name
+    %p
+      =h raw @post.text
   
 .clear
 .grid_7

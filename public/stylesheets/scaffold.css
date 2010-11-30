@@ -31,6 +31,9 @@ div.field, div.actions {
 .container_12 {
   margin-bottom: 100px; }
 
+.headline {
+  font-size: 20px; }
+
 #notice {
   color: green; }
 

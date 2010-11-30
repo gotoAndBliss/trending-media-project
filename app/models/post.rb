@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+
+  before_save                   :parse_text
                                                                            
   belongs_to                    :user, :touch => true                            
                                                                            
@@ -82,5 +84,14 @@ class Post < ActiveRecord::Base
     end
     rating = 45000 * Math.log10(z) + y * ts
   end
+
+  private
+  
+  def parse_text
+    if self.is_link != true
+      self.text = RedCloth.new(text).to_html
+    end
+  end
   
 end
+
