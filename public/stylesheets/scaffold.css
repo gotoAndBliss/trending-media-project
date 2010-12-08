@@ -166,6 +166,13 @@ div.field, div.actions {
 .login input {
   font-size: 20px; }
 
+.logblock {
+  display: block;
+  width: 170px;
+  margin: 0 5px;
+  height: 60px;
+  float: left; }
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -186,11 +193,15 @@ div.field, div.actions {
     padding-top: 10px; }
 
 .button {
-  background: #9b4545;
-  width: 171px;
+  background: none repeat scroll 0 0 #9b4545;
+  border: medium none;
+  color: white !important;
+  display: block;
+  font-size: 20px;
   height: 37px;
-  color: white;
-  border: none; }
+  text-align: center;
+  text-decoration: none;
+  width: 171px; }
 
 .comment_form {
   display: none; }

@@ -15,4 +15,9 @@
     %br/
     = f.password_field :password, :id => "password"
   .actions
-    = f.submit 'login', :class => 'button'
+    .logblock
+      = f.submit 'login', :class => 'button'
+    .logblock
+      = link_to "signup", new_user_path, :class => 'button'
+
+   
