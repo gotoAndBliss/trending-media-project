@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_filter :require_user, :except => [:show_posts]
   
   def show_posts
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
     @category_posts = (Post.find(:all, :conditions => { :category => @category.name }).sort {|a,b| b.shwagrithm <=> a.shwagrithm}).paginate(:page => params[:page], :per_page => 10)
   end
   
@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
 
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
 
 
   def edit
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
   end
 
 
@@ -60,7 +60,7 @@ class CategoriesController < ApplicationController
   # PUT /categories/1
   # PUT /categories/1.xml
   def update
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
 
     respond_to do |format|
       if @category.update_attributes(params[:category])
@@ -76,7 +76,7 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1
   # DELETE /categories/1.xml
   def destroy
-    @category = Category.find(params[:id])
+    @category = Category.find_by_name(params[:id])
     @category.destroy
 
     respond_to do |format|
