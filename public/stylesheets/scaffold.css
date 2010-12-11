@@ -96,6 +96,23 @@ div.field, div.actions {
   font-size: 14px;
   margin-left: 10px; }
 
+.advert {
+  font-weight: bold;
+  display: block;
+  height: 180px;
+  width: 245px;
+  margin-left: 40px; }
+  .advert ul {
+    line-height: 30px;
+    margin-bottom: 10px; }
+  .advert span {
+    color: #9b4545; }
+  .advert .arrow_block {
+    text-align: right;
+    height: 40px;
+    width: 100px;
+    display: block; }
+
 .red_box_of_love {
   border: 15px solid #9b4545;
   display: block;

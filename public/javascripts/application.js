@@ -22,6 +22,9 @@ $(document).ready(function() {
   $("input:password").chromaHash({number: 4});
   $("#username").focus();
 
+  // Toggle Advertisement
+
+
   // Link Posts
   
   var toggleTextLink = function() {

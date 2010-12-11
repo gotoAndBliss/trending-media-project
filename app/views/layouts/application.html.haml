@@ -44,9 +44,37 @@
       .grid_8
         = yield
       .grid_4.omega.sideNav
-        - for category in @categories
-          %li
-            = link_to "#{category.name}", show_posts_category_path(category)
+        - if current_user == nil
+          :javascript
+            $(document).ready(function() {
+              $(".cats").hide();
+              $(".advert").delay(10000).slideUp(function(){
+                $(".cats").slideDown();
+              });
+            });
+          .advert
+            .grid_2.arrow_block{:style => "margin-top: 5px;"}
+              = image_tag('up-arrow.jpg')
+            .clear
+            %ul
+              %li
+                %span
+                  1.
+                Register Anonymously
+              %li
+                %span
+                  2.
+                Share Your Shwag
+              %li
+                %span
+                  3.
+                Commit Actions
+            .grid_2.arrow_block
+              = image_tag('down-arrow.jpg')
+        .grid_4.alpha.omega.cats
+          - for category in @categories
+            %li
+              = link_to "#{category.name}", show_posts_category_path(category)
         .clear
         .red_box_of_love
           = link_to image_tag('action-1.jpg', :style => 'border: none;'), "/images/Shwagr-War-on-Drugs-Postcard.zip"
