@@ -6,7 +6,7 @@
     .headline
       = @post.name
     %p
-      =h raw @post.text
+      =h raw RedCloth.new(@post.text).to_html
   
 .clear
 .grid_7

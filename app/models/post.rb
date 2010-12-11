@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-  before_save                   :parse_text
+  #before_save                   :parse_text
                                                                            
   belongs_to                    :user, :touch => true                            
                                                                            
@@ -18,6 +18,8 @@ class Post < ActiveRecord::Base
                                                                            
   has_many                      :comments, :as => :commentable                                        
   accepts_nested_attributes_for :comments, :allow_destroy => true
+  
+  has_friendly_id               :name, :use_slug => true
                     
   def time_from_now
     days_past = (Time.now - self.created_at.to_time)/1.day

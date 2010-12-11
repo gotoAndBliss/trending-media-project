@@ -36,8 +36,15 @@ $(document).ready(function() {
     $(this).wrap("<div class='selected-post-nav' />")
     $(".text_link").toggle("slow");
   };
-  $(".text_link_toggle:last").bind('click', toggleTextLink );
-  $(".text_link_toggle:first").wrap("<div class='selected-post-nav' />")
+  if ($("#post_text").val() == "") {
+    $(".text_link_toggle:last").bind('click', toggleTextLink );
+    $(".text_link_toggle:first").wrap("<div class='selected-post-nav' />")
+  } else {
+    $('#post_is_link').attr('checked', false);
+    $(".text_link").toggle();
+    $(".text_link_toggle:first").bind('click', toggleTextLink );
+    $(".text_link_toggle:last").wrap("<div class='selected-post-nav' />")
+  };
 
   $(".comment").live("click", function() {
     if($(this).next().next().is(":visible")) {
