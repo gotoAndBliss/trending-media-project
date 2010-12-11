@@ -1,5 +1,5 @@
 .main_content.grid_8.alpha.omega{:style => "border: 1px; solid black;"}
   
-  = will_paginate @posts
+  = will_paginate @posts, {:outer_window => 0, :inner_window => 1}
   = render :partial => 'post_view', :collection => @posts
   %br/

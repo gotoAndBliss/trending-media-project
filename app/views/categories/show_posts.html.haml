@@ -4,6 +4,6 @@
   .grid_8
     %h1
       Nothing to see here. Move along please.
-= will_paginate @category_posts
+= will_paginate @category_posts, {:outer_window => 0, :inner_window => 1}
 = render :partial => 'main/post_view', :collection => @category_posts
  
