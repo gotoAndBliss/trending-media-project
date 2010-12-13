@@ -12,23 +12,19 @@
         = comment.vote_score
       = link_to image_tag('vote-down.jpg'), login_url
   .grid_5
-
-    %b
+    %b{:style => "color: #9B4545;"}
       =h comment.user.username if comment.user 
-    wrote this
-    %b
-      = comment.time_from_now + " ago :"
+    = "( " + comment.time_from_now + " ago )"
     %br/
     =h raw RedCloth.new(comment.text).to_html
-    %br/
-    = link_to 'Comment', '#', :class => "comment"
+    = link_to 'Reply', '#', :class => "comment"
     %br/
     .comment_form
       - form_for [comment, Comment.new] do |f|
         = f.hidden_field :id, :value => comment.id
         = f.label 'Comment'
         %br/
-        = f.text_area :text, :style => "height: 50px;"
+        = f.text_area :text, :style => "height: 100px; width: 400px;"
         %br/
         = f.submit 'Submit', :class => 'button'
   .clear
