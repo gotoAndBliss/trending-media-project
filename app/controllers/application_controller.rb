@@ -34,7 +34,8 @@ class ApplicationController < ActionController::Base
   
   def store_location
     if request.params[:controller] == "comments"
-      session[:return_to] = post_url(request.params[:post_id])
+      session[:return_to] = post_url(request.params[:post_id]) unless request.params[:post_id] == nil
+      session[:return_to] = post_url(Comment.find(request.params[:comment_id]).post_parent_id) unless request.params[:comment_id] == nil
     else
       session[:return_to] = request.fullpath
     end
