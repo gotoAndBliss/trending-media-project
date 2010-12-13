@@ -1,0 +1,5 @@
+= render :partial => 'navigation'
+
+- if @new_mail.blank?
+  Nothing to see here. Move along please.
+= render :partial => 'posts/comment', :collection => @new_mail

@@ -12,6 +12,10 @@
         = comment.vote_score
       = link_to image_tag('vote-down.jpg'), login_url
   .grid_5
+    - if params[:controller] == "message"
+      %i
+        = link_to Post.find(comment.post_parent_id).name ,post_url(comment.post_parent_id)
+      %br/
     %b{:style => "color: #9B4545;"}
       =h comment.user.username if comment.user 
     = "( " + comment.time_from_now + " ago )"

@@ -24,7 +24,7 @@
         .grid_4
           #user_nav
             - if current_user
-              = link_to image_tag('mail.jpg'), '#'
+              = link_to image_tag(current_user.new_responses.blank? ? 'mailgray.png' : 'mail.jpg'), inbox_url
               = link_to "#{current_user.username}", user_posts_path(current_user)
               |
               = link_to  "Edit Profile", edit_user_path(:current)

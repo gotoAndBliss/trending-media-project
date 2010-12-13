@@ -1,5 +1,13 @@
 Shwagr::Application.routes.draw do
 
+  root :to => 'main#index'
+
+  match "login", :to => "user_sessions#new", :as => "login"
+  match "logout", :to => "user_sessions#destroy", :as => "logout"
+  match '/message/inbox', :to => "message#inbox", :as => "inbox"
+
+  resources :message
+
   resources :comments do
     resources :comments
     member do
@@ -28,9 +36,6 @@ Shwagr::Application.routes.draw do
       end
     end
   end
-  match "login", :to => "user_sessions#new", :as => "login"
-  match "logout", :to => "user_sessions#destroy", :as => "logout"
 
-  root :to => 'main#index'
   
 end

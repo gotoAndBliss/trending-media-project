@@ -11,6 +11,14 @@ class Comment < ActiveRecord::Base
             
   
   validates_presence_of :text
+  
+  def self.after(date)
+    where "created_at > ?", date
+  end
+  
+  def self.replies_for(comments, user)
+    where(:commentable_id => comments.map(&:id)).where("user_id != ?", user.id)
+  end
 
   def vote_score
     self.votes.inject(0){|sum, vote| sum + vote.value}
