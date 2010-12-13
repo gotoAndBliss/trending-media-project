@@ -31,7 +31,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    debugger
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
     @comment.user_id = current_user.id
