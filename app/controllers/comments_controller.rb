@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_filter :require_login, :only => [:create]
+
   def index
     @commentable = find_commentable
     @comments = @commentable.comments
@@ -29,6 +31,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    debugger
     @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
     @comment.user_id = current_user.id

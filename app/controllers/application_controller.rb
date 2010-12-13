@@ -13,6 +13,15 @@ class ApplicationController < ActionController::Base
   
   private
   
+  def require_login
+    unless current_user
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to login_url
+      return false
+    end
+  end
+  
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
@@ -24,7 +33,11 @@ class ApplicationController < ActionController::Base
   end  
   
   def store_location
-    session[:return_to] = request.fullpath
+    if request.params[:controller] == "comments"
+      session[:return_to] = post_url(request.params[:post_id])
+    else
+      session[:return_to] = request.fullpath
+    end
   end
   
   def redirect_back_or_default(default)

@@ -12,7 +12,9 @@
         = comment.vote_score
       = link_to image_tag('vote-down.jpg'), login_url
 
-
+  %b
+    =h comment.user.username if comment.user    
+  %br/
   =h comment.text
   %br/
   = link_to 'Comment', '#', :class => "comment"

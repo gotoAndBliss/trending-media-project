@@ -29,7 +29,7 @@
     to
     = link_to "#{post_view.category}", ''
     %br/
-    = link_to "#{Comment.all.select{|c|c.post_parent_id == Post.find(1).id}.size} Comments", post_path(post_view)
+    = link_to "#{post_view.comments.size} Comments", post_path(post_view)
     
     
     
