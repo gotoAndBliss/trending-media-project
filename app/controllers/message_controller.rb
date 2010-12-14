@@ -6,7 +6,7 @@ class MessageController < ApplicationController
   end
   
   def index
-    @old_mail = Comment.replies_for(current_user.comments, current_user)
+    @old_mail = Comment.replies_for(current_user)
   end
   
 end

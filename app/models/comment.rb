@@ -16,8 +16,13 @@ class Comment < ActiveRecord::Base
     where "created_at > ?", date
   end
   
-  def self.replies_for(comments, user)
-    where(:commentable_id => comments.map(&:id)).where("user_id != ?", user.id)
+  def self.replies_for(user)
+    #commentable_type = post | comment
+    #find all comments from post && comment but do not let them overlap..
+    #post_replies = where(:commentable_type => "Post", :commentable_id => user.posts.map(&:id)).where("user_id != ?", user.id)
+    #comment_replies = 
+    where(:commentable_id => user.comments.map(&:id)).where("user_id != ?", user.id) 
+    
   end
 
   def vote_score

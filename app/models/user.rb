@@ -7,12 +7,8 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :comments
   
-  def new_comments
-    comments.after(last_checked_mail)
-  end
-  
   def new_responses
-    Comment.replies_for(new_comments, self).after(last_checked_mail)
+    Comment.replies_for(self).after(last_checked_mail)
   end
   
 end
