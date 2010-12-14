@@ -23,7 +23,7 @@ class Comment < ActiveRecord::Base
     #comment_replies = 
     posts = where(:commentable_id => user.posts.map(&:id)).where("user_id !=?", User.first.id)
     comments = where(:commentable_id => user.comments.map(&:id)).where("user_id != ?", user.id) 
-    return posts & comments
+    return posts - comments
   end
 
   def vote_score
