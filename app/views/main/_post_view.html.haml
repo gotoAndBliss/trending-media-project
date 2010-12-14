@@ -35,12 +35,13 @@
       %br/
       = link_to "#{post_view.comments.size} Comments", post_path(post_view)
     .clear
+    
     .grid_5.movie_container{:style => "display: none;"}
       %object{ :width => "480", :height => "385"}
-        %param{ :name => "movie", :value => "#{post_view.url}"}
+        %param{ :name => "movie", :value => "#{post_view.tube_url}&amp;hl=en_US"}
         %param{ :name => "allowFullScreen", :value => "true"}
         %param{ :name =>"allowscriptaccess", :value => "always"}
-        %embed{ :src => "#{post_view.url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
+        %embed{ :src => "#{post_view.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
       
     
     
