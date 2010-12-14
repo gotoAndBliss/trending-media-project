@@ -239,3 +239,10 @@ div.field, div.actions {
     text-decoration: none; }
   .pagination em {
     color: black; }
+
+.play_movie {
+  height: 31px;
+  width: 31px;
+  margin-top: 4px;
+  background: url("/images/play-button.jpg") no-repeat;
+  display: block; }

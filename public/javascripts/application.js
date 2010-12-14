@@ -58,6 +58,18 @@ $(document).ready(function() {
     return false;
   });
   
+  $(".play_movie").click(function(){
+    var playBtn = $(this)
+    $(this).parent().next().next().next().toggle("slow", function(){
+      if (playBtn.css("background-position") == "0% 0%"){
+      playBtn.css("background-position", "0 -31px");
+      } else {
+        playBtn.css("background-position", "0% 0%");
+      };
+    });
+    return false;
+  });
+  
 
 });
 
