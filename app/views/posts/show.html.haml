@@ -1,12 +1,31 @@
 %p
   - if @post.is_link
     .headline
-      = link_to @post.name, @post.url
+      =h link_to @post.name, @post.url
+    - if @post.is_a_sexy_link == "www.youtube.com"
+      .grid_1.alpha{:style => "width: 20px;"}
+        = link_to '', '#', :class => "play_movie"
+    .grid_5
+      %p
+        Posted by
+        = link_to User.find(@post.user.id).username, user_posts_path(@post.user)
+        (
+        = @post.time_from_now + " ago"
+        )
+      
   - else
     .headline
-      = @post.name
+      =h @post.name
+      =h "#{'Posted by' + User.find(@post.user.id).username}"
     %p
       =h raw RedCloth.new(@post.text).to_html
+      
+  .grid_5.movie_container{:style => "display: none;"}
+    %object{ :width => "480", :height => "385"}
+      %param{ :name => "movie", :value => "#{@post.tube_url}&amp;hl=en_US"}
+      %param{ :name => "allowFullScreen", :value => "true"}
+      %param{ :name =>"allowscriptaccess", :value => "always"}
+      %embed{ :src => "#{@post.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
   
 .clear
 .grid_7
@@ -18,8 +37,9 @@
   = f.submit "Submit", :class => 'button'
 .clear
 %br/
-%p
-  Comments..
+- if @post.comments.count > 0
+  %p
+    Comments
 .clear
 .grid_7
   = render :partial => 'comment', :collection => @comments
