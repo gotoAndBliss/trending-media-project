@@ -21,8 +21,9 @@ class Comment < ActiveRecord::Base
     #find all comments from post && comment but do not let them overlap..
     #post_replies = where(:commentable_type => "Post", :commentable_id => user.posts.map(&:id)).where("user_id != ?", user.id)
     #comment_replies = 
-    where(:commentable_id => user.comments.map(&:id)).where("user_id != ?", user.id) 
-    
+    posts = where(:commentable_id => user.posts.map(&:id)).where("user_id !=?", User.first.id)
+    comments = where(:commentable_id => user.comments.map(&:id)).where("user_id != ?", user.id) 
+    return posts & comments
   end
 
   def vote_score
