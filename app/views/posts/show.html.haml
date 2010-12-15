@@ -16,8 +16,12 @@
   - else
     .headline
       =h @post.name
-      %br/
+    .grid_5
       =h "#{'Posted by' + User.find(@post.user.id).username}"
+      (
+      = @post.time_from_now + " ago"
+      )
+    %br/
     %p
       =h raw RedCloth.new(@post.text).to_html
       
