@@ -16,6 +16,7 @@
   - else
     .headline
       =h @post.name
+      %br/
       =h "#{'Posted by' + User.find(@post.user.id).username}"
     %p
       =h raw RedCloth.new(@post.text).to_html

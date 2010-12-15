@@ -14,7 +14,7 @@ class Post < ActiveRecord::Base
   has_many                      :votes, :as => :votable                          
   has_many                      :voting_users,                                   
                                 :through => :votes,                              
-                                :source => :user                                 
+                                :source => :user
                                                                            
   has_many                      :comments, :as => :commentable                                        
   accepts_nested_attributes_for :comments, :allow_destroy => true
