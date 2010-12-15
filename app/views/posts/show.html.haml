@@ -17,7 +17,7 @@
     .headline
       =h @post.name
     .grid_5
-      =h "#{'Posted by' + User.find(@post.user.id).username}"
+      =h "#{'Posted by ' + User.find(@post.user.id).username}"
       (
       = @post.time_from_now + " ago"
       )
