@@ -22,7 +22,7 @@
       = link_to "#{post_view.is_a_sexy_link}", post_view.url
       )
     .clear
-    - if post_view.is_a_sexy_link == "www.youtube.com"
+    - if post_view.is_a_sexy_link == "www.youtube.com" || "vimeo.com"
       .grid_1.alpha{:style => "width: 20px;"}
         = link_to '', '#', :class => "play_movie"
     .grid_5
@@ -40,14 +40,18 @@
     .clear
     
     .grid_5.movie_container{:style => "display: none;"}
-      %object{ :width => "480", :height => "385"}
-        %param{ :name => "movie", :value => "#{post_view.tube_url}&amp;hl=en_US"}
-        %param{ :name => "allowFullScreen", :value => "true"}
-        %param{ :name =>"allowscriptaccess", :value => "always"}
-        %embed{ :src => "#{post_view.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
-      
-    
-    
-    
-    
-    
+      - if post_view.is_a_sexy_link == "www.youtube.com"
+        %object{ :width => "480", :height => "385"}
+          %param{ :name => "movie", :value => "#{post_view.tube_url}&amp;hl=en_US"}
+          %param{ :name => "allowFullScreen", :value => "true"}
+          %param{ :name =>"allowscriptaccess", :value => "always"}
+          %embed{ :src => "#{post_view.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
+      - elsif post_view.is_a_sexy_link == "vimeo.com"        
+        %object{:width => "485px", :height => "385px", :type => "application/x-shockwave-flash", :id => "vimeo_clip_17406813", :name => "vimeo_clip_17406813", :data => "http://a.vimeocdn.com/flash/moogaloop/5.1.0/moogaloop.swf?v=1.0.8"}
+          %param{:name => "bgcolor", :value => "#000000"}
+          %param{:name => "allowscriptaccess", :value => "always"}
+          %param{:name => "allowfullscreen", :value => "true"}
+          %param{:name => "scalemode", :value => "noscale"}
+          %param{:name => "quality", :value => "high"}
+          %param{:name => "wmode", :value => "opaque"}
+          %param{:name => "flashvars", :value => "server=vimeo.com&amp;player_server=player.vimeo.com&amp;cdn_server=a.vimeocdn.com&amp;embed_location=#{post_view.url}&amp;force_embed=0&amp;force_info=0&amp;moogaloop_type=moogaloop&amp;js_setupMoog=player17406812_1115591315.player.initiate&amp;js_onLoad=player17406812_1115591315.player.loaded&amp;clip_id=#{post_view.vimeo_url}&amp;fullscreen=1&amp;autoplay=0&amp;js_getConfig=player17406812_1115591315.getConfig"}

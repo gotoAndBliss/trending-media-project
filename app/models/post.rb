@@ -48,10 +48,12 @@ class Post < ActiveRecord::Base
   end
   
   def tube_url
-    #object link : http://www.youtube.com/v/4lzi_3SM9-o?fs=1
-    #actual link : http://www.youtube.com/watch?v=4lzi_3SM9-o
     link = self.url.gsub(/watch\?v=/, 'v/')
     link + "?fs=1"
+  end
+  
+  def vimeo_url
+    link = self.url.split(/http:\/\/vimeo.com\//)[1]
   end
   
   def category?
