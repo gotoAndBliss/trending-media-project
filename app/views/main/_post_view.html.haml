@@ -22,7 +22,7 @@
       = link_to "#{post_view.is_a_sexy_link}", post_view.url
       )
     .clear
-    - if post_view.is_a_sexy_link == "www.youtube.com" || "vimeo.com"
+    - if post_view.video_link
       .grid_1.alpha{:style => "width: 20px;"}
         = link_to '', '#', :class => "play_movie"
     .grid_5

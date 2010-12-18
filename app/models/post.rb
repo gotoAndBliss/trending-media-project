@@ -47,6 +47,13 @@ class Post < ActiveRecord::Base
     return @uri.host
   end
   
+  def video_link
+    case self.is_a_sexy_link
+    when "www.youtube.com", "vimeo.com"
+      return true
+    end
+  end
+  
   def tube_url
     link = self.url.gsub(/watch\?v=/, 'v/')
     link + "?fs=1"
