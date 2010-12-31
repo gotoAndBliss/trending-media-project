@@ -44,8 +44,9 @@ div.field, div.actions {
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
-  display: table; }
+  background-color: #9b4545;
+  display: table;
+  color: white; }
 
 #error_explanation {
   width: 450px;
@@ -251,3 +252,32 @@ div.field, div.actions {
   margin-top: 4px;
   background: url("/images/play-button.jpg") no-repeat;
   display: block; }
+
+.category {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: none repeat scroll 0 0 #9b4545;
+  color: white;
+  padding: 1px 4px;
+  text-decoration: none; }
+
+.category:visited {
+  color: white; }
+
+.category:hover {
+  background: black; }
+
+.category-choice {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: none #9b4545;
+  color: white;
+  padding: 5px 8px;
+  margin: 0 8px 10px 0;
+  float: left;
+  cursor: pointer; }
+  .category-choice label {
+    cursor: pointer; }
+
+.category-choice:hover {
+  background: black; }

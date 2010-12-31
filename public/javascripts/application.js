@@ -70,6 +70,11 @@ $(document).ready(function() {
     return false;
   });
   
+  $(".category-choice").click(function(){
+    $(".category-choice").not(this).css("background","#9B4545");
+    $(this).css("background", "black");
+  });
+  
 
 });
 

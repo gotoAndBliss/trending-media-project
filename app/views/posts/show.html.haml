@@ -35,7 +35,7 @@
 .clear
 .grid_7
 - form_for [@commentable, Comment.new] do |f|
-  =h f.label :text, 'Comment'
+  =h f.label :text, 'Got something to say?'
   %br/
   =h f.text_area :text, :style => "height: 100px;"
   %br/
@@ -44,7 +44,7 @@
 %br/
 - if @post.comments.count > 0
   %p
-    Comments
+    What other people think :
 .clear
 .grid_7
   = render :partial => 'comment', :collection => @comments

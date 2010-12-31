@@ -31,7 +31,7 @@
       ago by
       = link_to "#{post_view.user.username}", user_posts_path(post_view.user)
       to
-      = link_to "#{post_view.category}", show_posts_category_path(Category.find_by_name(post_view.category))
+      = link_to "#{post_view.category}", show_posts_category_path(Category.find_by_name(post_view.category)), :class => "category"
       %br/
       - if post_view.comments.count > 0
         = link_to "#{post_view.comments.size} Comments", post_path(post_view)

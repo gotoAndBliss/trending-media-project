@@ -37,9 +37,9 @@
           .clear
           .grid_2.submit
             - if current_user
-              = link_to "Submit a Link", new_user_post_path(current_user.id) 
+              = link_to "Submit Stuff", new_user_post_path(current_user.id) 
             - else
-              = link_to "Submit a Link", login_path
+              = link_to "Submit Stuff", login_path
       .clear
       .grid_8
         = yield
