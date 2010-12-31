@@ -2,5 +2,5 @@
   = User.find(params[:user_id]).username + "'s Posts and Rants"
 
 -# @posts.each do |post|
-= will_paginate @posts, {:outer_window => 0, :inner_window => 1}
+= will_paginate @posts, {:outer_window => -1, :inner_window => 2}
 = render :partial => 'post', :collection => @posts
