@@ -94,7 +94,23 @@ class PostsController < ApplicationController
     end
   end
   
+  def load_images
+    @url = params[:url]
+    @url_root = (URI.parse(@url)).host
+    @images = rape_that_sites(@url)
+  end
+  
   private
+  
+    def rape_that_sites(url)
+      rapi = Scraper.define do
+        array :images
+        process "img", :images => "@src"
+        result :images
+      end
+      uri = URI.parse(url)
+      return rapi.scrape(uri)
+    end
 
   def find_commentable
     params.each do |name, value|

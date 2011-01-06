@@ -70,6 +70,12 @@ $(document).ready(function() {
     return false;
   });
   
+  $(".text_link").bind("blur focusout", function(){
+    url = $("#post_url").val();
+    $.ajax({type: "GET", url: "/posts/load_images?url=" + url, dataType: "script"});
+		return false;
+  });
+  
   $(".category-choice").click(function(){
     $(".category-choice").not(this).css("background","#9B4545");
     $(this).css("background", "black");

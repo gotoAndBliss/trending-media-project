@@ -1,36 +1,52 @@
-%p
-  - if @post.is_link
-    .headline
-      =h link_to @post.name, @post.url
-    - if @post.is_a_sexy_link == "www.youtube.com"
-      .grid_1.alpha{:style => "width: 20px;"}
-        = link_to '', '#', :class => "play_movie"
-    .grid_5
-      %p
-        Posted by
-        = link_to User.find(@post.user.id).username, user_posts_path(@post.user)
+.grid_8.alpha.omega
+  .grid_1.alpha{:style => "text-align: center;"}
+    - if current_user
+      = link_to image_tag(current_user.votes.any? {|v| v.votable_id == @post.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(@post), :class => 'vote'
+      .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+        = @post.vote_score
+      = link_to image_tag(current_user.votes.any? {|v| v.votable_id == @post.id && v.value < 0} ? 'vote-down-selected.jpg' : 'vote-down.jpg'), vote_down_post_path(@post), :class => 'vote'
+    - else
+      = link_to image_tag('vote-up.jpg'), login_url
+      .vote_count{:style => "font-size: 14px; font-weight: bold;"}
+        = @post.vote_score
+      = link_to image_tag('vote-down.jpg'), login_url
+  .grid_6
+
+    - if @post.is_link
+      .headline
+        =h link_to @post.name, @post.url
+      - if @post.is_a_sexy_link == "www.youtube.com"
+        .grid_1.alpha{:style => "width: 20px;"}
+          = link_to '', '#', :class => "play_movie"
+      .grid_5
+        %p
+          Posted by
+          = link_to User.find(@post.user.id).username, user_posts_path(@post.user)
+          (
+          = @post.time_from_now + " ago"
+          )
+        - if @post.imgur_url
+          .clear
+          = link_to image_tag(@post.url, :width => "550"), @post.url
+    
+    - else
+      .headline
+        =h @post.name
+      .grid_5
+        =h "#{'Posted by ' + User.find(@post.user.id).username}"
         (
         = @post.time_from_now + " ago"
         )
-      
-  - else
-    .headline
-      =h @post.name
-    .grid_5
-      =h "#{'Posted by ' + User.find(@post.user.id).username}"
-      (
-      = @post.time_from_now + " ago"
-      )
-    %br/
-    %p
-      =h raw RedCloth.new(@post.text).to_html
-      
-  .grid_5.movie_container{:style => "display: none;"}
-    %object{ :width => "480", :height => "385"}
-      %param{ :name => "movie", :value => "#{@post.tube_url}&amp;hl=en_US"}
-      %param{ :name => "allowFullScreen", :value => "true"}
-      %param{ :name =>"allowscriptaccess", :value => "always"}
-      %embed{ :src => "#{@post.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
+      %br/
+      %p
+        =h raw RedCloth.new(@post.text).to_html
+    
+    .grid_5.movie_container{:style => "display: none;"}
+      %object{ :width => "480", :height => "385"}
+        %param{ :name => "movie", :value => "#{@post.tube_url}&amp;hl=en_US"}
+        %param{ :name => "allowFullScreen", :value => "true"}
+        %param{ :name =>"allowscriptaccess", :value => "always"}
+        %embed{ :src => "#{@post.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
   
 .clear
 .grid_7

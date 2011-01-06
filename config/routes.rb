@@ -23,10 +23,13 @@ Shwagr::Application.routes.draw do
   end
   resources :posts do
     resources :comments
-     member do
-       get :vote_up 
-       get :vote_down
-     end
+    collection do
+     get :load_images
+   end
+   member do
+     get :vote_up 
+     get :vote_down
+   end
   end
   resources :user_sessions
   resources :users do

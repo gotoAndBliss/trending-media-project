@@ -32,6 +32,13 @@
       = f.label :url, 'Website Link'
       %br/
       = f.text_field :url
+      -#
+        .field
+          = f.label :thumb_preview, 'Choose a Preview Image'
+          %br/
+          #load_images
+        .clear
+    
     .field.text_link{:style => "display: none;"}
       = f.label :text
       %br/

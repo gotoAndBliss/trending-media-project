@@ -54,6 +54,13 @@ class Post < ActiveRecord::Base
     end
   end
   
+  def imgur_url
+    case self.is_a_sexy_link
+    when "i.imgur.com"
+      return true
+    end
+  end
+  
   def tube_url
     link = self.url.gsub(/watch\?v=/, 'v/')
     link + "?fs=1"
@@ -102,6 +109,23 @@ class Post < ActiveRecord::Base
     end
     rating = 45000 * Math.log10(z) + y * ts
   end
+  
+  #imgur cookie = lodhrt2tttmia6qkh93ntei4q1
+
+  def imgur(key, cookie, file_path)
+    data = {
+      :key => key, :image => File.open(file_path)
+    }
+    headers = {
+      "Cookie" => "IMGURSESSION=#{cookie}"
+    }
+
+    http      = Net::HTTP.new("imgur.com")
+    path      = "/api/upload.json"
+    response  = http.post(path, data, headers)
+    json      = JSON.parse(response.body)["rsp"]["image"] rescue nil
+  end
+  
 
   private
   
