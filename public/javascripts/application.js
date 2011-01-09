@@ -76,8 +76,8 @@ $(document).ready(function() {
 		return false;
   });
   
-  $(".category-choice").click(function(){
-    $(".category-choice").not(this).css("background","#9B4545");
+  $(".category-choice label").click(function(){
+    $(".category-choice label").not(this).css("background","#9B4545");
     $(this).css("background", "black");
   });
   

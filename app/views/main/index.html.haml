@@ -1,5 +1,14 @@
 .main_content.grid_8.alpha.omega{:style => "border: 1px; solid black;"}
-  
-  = will_paginate @posts, {:outer_window => -1, :inner_window => 2}
+  .grid_8.alpha.omega
+    .grid_3
+      .subtopic-holder
+        %h1
+          trending topics
+    .grid_4{:style => "float: right; margin-top: 10px;"}
+      = will_paginate @posts, {:outer_window => -1, :inner_window => 2}
+  .clear
   = render :partial => 'post_view', :collection => @posts
+  .grid_4.post{:style => "float: right; margin: 10px 5px 0 0;"}
+    = will_paginate @posts, {:outer_window => -1, :inner_window => 2}
   %br/
+.bottom_leaf

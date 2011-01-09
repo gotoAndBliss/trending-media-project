@@ -16,76 +16,74 @@
       .system_messages
         - flash.each do |name,msg|
           = content_tag :div, msg, :id => "flash_#{name}", :style => "color: #fff; text-align: center;"
-    .container_12
-      .clear
-      .sh_header.grid_12.alpha.omega
-        .grid_8.alpha.omega
-          = link_to '', root_path, :style => "margin: 20px 0; height: 100px; width: 310px; display: block;"
-        .grid_4
-          #user_nav
-            - if current_user
-              = link_to image_tag(current_user.new_responses.blank? ? 'mailgray.png' : 'mail.jpg'), inbox_url
-              = link_to "#{current_user.username}", user_posts_path(current_user)
-              |
-              = link_to  "Edit Profile", edit_user_path(:current)
-              |
-              = link_to "Logout", logout_path
-            - else
-              = link_to "Register", new_user_path
-              |
-              = link_to "Login", login_path
-          .clear
-          .grid_2.submit
-            - if current_user
-              = link_to "Submit Stuff", new_user_post_path(current_user.id) 
-            - else
-              = link_to "Submit Stuff", login_path
-      .clear
-      .grid_8
-        = yield
-      .grid_4.omega.sideNav
-        - if current_user == nil
-          :javascript
-            $(document).ready(function() {
-              $(".cats").hide();
-              $(".advert").delay(10000).slideUp(function(){
-                $(".cats").slideDown();
-              });
-            });
-          .advert
-            .grid_2.arrow_block{:style => "margin-top: 5px;"}
-              = image_tag('up-arrow.jpg')
+    .main_bg
+      .container_12
+        .clear
+        .grid_12.alpha.omega
+          .grid_8.alpha.omega
+            = link_to '', root_path, :style => "margin: 20px 0; height: 100px; width: 460px; display: block;"
+          .grid_4
+            #user_nav
+              - if current_user
+                = link_to image_tag(current_user.new_responses.blank? ? 'mailgray.png' : 'mail.jpg'), inbox_url
+                = link_to "#{current_user.username}", user_posts_path(current_user)
+                = link_to  "Edit Profile", edit_user_path(:current)
+                = link_to "Logout", logout_path
+              - else
+                = link_to "Register", new_user_path
+                = link_to "Login", login_path
             .clear
-            %ul
-              %li
-                %span
-                  1.
-                Register Anonymously
-              %li
-                %span
-                  2.
-                Share Your Shwag
-              %li
-                %span
-                  3.
-                Commit Actions
-            .grid_2.arrow_block
-              = image_tag('down-arrow.jpg')
-        .grid_4.alpha.omega.cats
-          - for category in @categories
-            %li
-              = link_to "#{category.name}", show_posts_category_path(category)
+            .grid_2.submit
+              - if current_user
+                = link_to "Submit Stuff", new_user_post_path(current_user.id) 
+              - else
+                = link_to "Submit Stuff", login_path
         .clear
-        .red_box_of_love
-          = image_tag('action-2.jpg', :style => 'border: none;')
-        .clear
+        .grid_8
+          = yield
+        .grid_4.omega.sideNav
+          - if current_user == nil
+            :javascript
+              $(document).ready(function() {
+                $(".cats").hide();
+                $(".advert").delay(10000).slideUp(function(){
+                  $(".cats").slideDown();
+                });
+              });
+            .advert
+              .grid_2.arrow_block{:style => "margin-top: 5px;"}
+                = image_tag('up-arrow.jpg')
+              .clear
+              %ul
+                %li
+                  %span
+                    1.
+                  Register Anonymously
+                %li
+                  %span
+                    2.
+                  Share Your Shwag
+                %li
+                  %span
+                    3.
+                  Commit Actions
+              .grid_2.arrow_block
+                = image_tag('down-arrow.jpg')
+          .grid_4.alpha.omega.cats
+            - for category in @categories
+              %li
+                = link_to "#{category.name}", show_posts_category_path(category)
+          .clear
+          .red_box_of_love
+            = image_tag('action-2.jpg', :style => 'border: none;')
+          .clear
       
+        .clear
       .clear
-    .clear
-    .footer
-      .footer_body
-        .text
-          Shwagr : [sh·wa·gr] n. an anarcho-aggregator of content related to self-reliability, non-violence, and art. 
+      .footer
+        .footer_body
+          .text
+            Shwagr : [sh·wa·gr] n. an anarcho-aggregator of content related to self-reliability, non-violence, and art. 
       
 :javascript
   var _gaq = _gaq || [];

@@ -1,4 +1,4 @@
-.grid_8.alpha.omega
+.grid_8.omega.main_content
   .grid_1.alpha{:style => "text-align: center;"}
     - if current_user
       = link_to image_tag(current_user.votes.any? {|v| v.votable_id == @post.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(@post), :class => 'vote'
@@ -48,23 +48,22 @@
         %param{ :name =>"allowscriptaccess", :value => "always"}
         %embed{ :src => "#{@post.tube_url}", :type => "application/x-shockwave-flash", :allowscriptaccess => "always", :allowfullscreen => "true", :width => "480", :height => "385" }
   
-.clear
-.grid_7
-- form_for [@commentable, Comment.new] do |f|
-  =h f.label :text, 'Got something to say?'
-  %br/
-  =h f.text_area :text, :style => "height: 100px;"
-  %br/
-  = f.submit "Submit", :class => 'button'
-.clear
-%br/
-- if @post.comments.count > 0
-  %p
-    What other people think :
+  .grid_7
+    - form_for [@commentable, Comment.new] do |f|
+      =h f.label :text, 'Got something to say?'
+      %br/
+      =h f.text_area :text, :style => "height: 100px;"
+      %br/
+      = f.submit "Submit", :class => 'button'
+    .clear
+    %br/
+    - if @post.comments.count > 0
+      %p
+        What other people think :
 .clear
 .grid_7
   = render :partial => 'comment', :collection => @comments
-
+.bottom_leaf
 
 =# TODO : Make these options applicable only for the current_user == post.users
 =# link_to 'Edit', edit_post_path(@post)

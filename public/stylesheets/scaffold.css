@@ -1,5 +1,5 @@
 body, html {
-  background-color: white;
+  background-color: #9b4545;
   color: #333333;
   font-family: helvetica, sans-serif;
   font-size: 13px;
@@ -73,9 +73,38 @@ div.field, div.actions {
   height: 20px;
   width: 100%; }
 
-.sh_header {
-  background: url("/images/shwagr-header.png") no-repeat;
-  height: 139px; }
+.main_bg {
+  background: url("/images/new-shwag-bg-4.jpg") no-repeat;
+  height: 774px;
+  width: 1400px;
+  margin: 0 auto; }
+
+.main_content {
+  margin: 10px 0 0 3px;
+  background: white;
+  min-height: 1000px; }
+
+.subtopic-holder {
+  background: url("/images/subtopic-holder.png") no-repeat;
+  width: 295px;
+  height: 70px;
+  padding: 20px 0 0 28px;
+  color: white; }
+
+.trending-topic {
+  background: url("/images/trending-topics.png") no-repeat;
+  width: 225px;
+  height: 64px;
+  display: block; }
+
+.bottom_leaf {
+  background: url("/images/bottom-leaf.png") no-repeat;
+  width: 621px;
+  height: 42px;
+  bottom: 2px;
+  position: relative;
+  clear: both;
+  margin-left: 2px; }
 
 #user_nav {
   color: white;
@@ -83,14 +112,22 @@ div.field, div.actions {
   float: right;
   font-size: 12px;
   height: 20px;
-  margin: 11px 0 0 0;
+  margin: 11px 50px 0 0;
   text-align: center;
-  width: 280px; }
+  width: 271px; }
   #user_nav a {
-    color: white; }
+    color: white;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #3f2e2e;
+    text-decoration: none;
+    padding: 3px 6px;
+    margin-right: 4px; }
+  #user_nav a:hover {
+    background: #6b2b2c; }
 
 .sideNav {
-  background: url("/images/sidebar-line.jpg") left repeat-y;
   min-height: 600px; }
 
 .sideNav li {
@@ -107,7 +144,7 @@ div.field, div.actions {
   display: block;
   height: 180px;
   width: 245px;
-  margin-left: 40px; }
+  margin-left: 15px; }
   .advert ul {
     line-height: 30px;
     margin-bottom: 10px; }
@@ -123,7 +160,7 @@ div.field, div.actions {
   border: 15px solid #9b4545;
   display: block;
   height: 265px;
-  margin-left: 40px;
+  margin-left: 15px;
   margin-top: 25px;
   width: 245px; }
 
@@ -132,13 +169,16 @@ div.field, div.actions {
   display: block;
   font-size: 18px;
   font-weight: bold;
-  height: 35px;
-  margin-left: 24px;
-  margin-top: 46px;
+  height: 37px;
+  margin-left: 10px;
+  margin-top: 40px;
   padding-top: 10px;
   text-align: center;
   text-decoration: none;
-  width: 141px; }
+  width: 136px; }
+
+.submit a:hover {
+  background: #3f2e2e; }
 
 .post {
   width: 100%;
@@ -178,7 +218,8 @@ div.field, div.actions {
 
 .field_container {
   border: 5px solid #9b4545;
-  padding: 20px; }
+  padding: 0 0 0 20px;
+  margin-left: 20px; }
   .field_container textarea {
     width: 402px; }
   .field_container input:focus, .field_container textarea:focus {
@@ -207,7 +248,6 @@ div.field, div.actions {
   border-bottom: 15px solid black; }
 
 .footer_body {
-  background: url("/images/red-rod.jpg") repeat-y;
   height: 40px;
   width: 960px;
   margin: 0 auto;
@@ -267,7 +307,7 @@ div.field, div.actions {
 .category:hover {
   background: black; }
 
-.category-choice {
+.category-choice label {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   background: none #9b4545;
@@ -276,8 +316,8 @@ div.field, div.actions {
   margin: 0 8px 10px 0;
   float: left;
   cursor: pointer; }
-  .category-choice label {
+  .category-choice label label {
     cursor: pointer; }
 
-.category-choice:hover {
+.category-choice label:hover {
   background: black; }

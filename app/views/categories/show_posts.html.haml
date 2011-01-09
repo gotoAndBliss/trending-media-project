@@ -1,9 +1,17 @@
-%h1
-  = @category.name
+.grid_3
+  .subtopic-holder
+    %h1
+      = @category.name
+
 - if @category_posts.empty?
-  .grid_8
+  .grid_8.main_content
     %h1
       Nothing to see here. Move along please.
-= will_paginate @category_posts, {:outer_window => -1, :inner_window => 2}
-= render :partial => 'main/post_view', :collection => @category_posts
+.grid_4{:style => "float: right; margin-top: 15px;"}
+  = will_paginate @category_posts, {:outer_window => -1, :inner_window => 2}
+.grid_8.main_content
+  = render :partial => 'main/post_view', :collection => @category_posts
+  .grid_4.post{:style => "float: right; margin: 10px 5px 0 0;"}
+    = will_paginate @category_posts, {:outer_window => -1, :inner_window => 2}
+.bottom_leaf
  

@@ -1,6 +1,12 @@
-%h1
-  = User.find(params[:user_id]).username + "'s Posts and Rants"
-
--# @posts.each do |post|
-= will_paginate @posts, {:outer_window => -1, :inner_window => 2}
-= render :partial => 'post', :collection => @posts
+.grid_3
+  .subtopic-holder
+    %h1
+      = User.find(params[:user_id]).username + "'s posts"
+.grid_4{:style => "float: right; margin-top: 10px;"}
+  = will_paginate @posts, {:outer_window => -1, :inner_window => 2}
+.clear
+.grid_8.main_content
+  = render :partial => 'post', :collection => @posts
+  .grid_4.post{:style => "float: right; margin: 10px 5px 0 0;"}
+    = will_paginate @posts, {:outer_window => -1, :inner_window => 2}
+.bottom_leaf
