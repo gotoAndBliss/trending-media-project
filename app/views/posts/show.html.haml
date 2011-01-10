@@ -60,9 +60,9 @@
     - if @post.comments.count > 0
       %p
         What other people think :
-.clear
-.grid_7
-  = render :partial => 'comment', :collection => @comments
+  .clear
+  .grid_7
+    = render :partial => 'comment', :collection => @comments
 .bottom_leaf
 
 =# TODO : Make these options applicable only for the current_user == post.users
