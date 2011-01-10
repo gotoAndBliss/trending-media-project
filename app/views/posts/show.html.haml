@@ -1,4 +1,4 @@
-.grid_8.omega.main_content
+.grid_8.omega.main_content{:style => "min-height: 620px;"}
   .grid_1.alpha{:style => "text-align: center;"}
     - if current_user
       = link_to image_tag(current_user.votes.any? {|v| v.votable_id == @post.id && v.value > 0} ? 'vote-up-selected.jpg' : 'vote-up.jpg'), vote_up_post_path(@post), :class => 'vote'
