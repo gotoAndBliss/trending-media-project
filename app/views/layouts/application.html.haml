@@ -77,7 +77,6 @@
             - for category in @categories
               %li
                 .new_posts
-                  -# if !LastLogin.where(:user_id => current_user, :category_id => category).empty?
                   - if current_user && !current_user.last_logins.select{|ll|ll.category_id == category.id}.empty? && Post.find(:all, :conditions => ["created_at > ? AND category = ?", current_user.last_logins.find_by_category_id(category).updated_at, category.name]).size > 0
                     .number
                       = Post.find(:all, :conditions => ["created_at > ? AND category = ?", current_user.last_logins.find_by_category_id(category).updated_at, category.name]).size
