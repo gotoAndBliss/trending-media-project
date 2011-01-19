@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
       if !current_user.last_logins.find_by_category_id(@category).blank?
         current_user.last_logins.find_by_category_id(@category).update_attribute("updated_at", Time.now)
       else
-        @last_login = LastLogin.new(:user_id => current_user.id, :category_id => @category )
+        @last_login = LastLogin.new(:user_id => current_user.id, :category_id => @category.id )
         @last_login.save
       end
     end
