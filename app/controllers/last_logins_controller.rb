@@ -1,0 +1,2 @@
+class LastLoginsController < ApplicationController
+end

@@ -136,6 +136,38 @@ div.field, div.actions {
   font-size: 14px;
   margin-left: 10px; }
 
+.cats li {
+  clear: both;
+  padding-bottom: 23px;
+  margin-top: 5px;
+  width: 140px; }
+  .cats li .link {
+    float: left;
+    width: 100px;
+    float: left;
+    display: block; }
+  .cats li .new_posts {
+    text-align: center;
+    display: block;
+    float: left;
+    width: 20px; }
+    .cats li .new_posts .number {
+      color: white;
+      padding: 0 2px 3px;
+      background: #6b2b2c;
+      -moz-border-radius: 5px;
+      font-weight: bold;
+      display: inline; }
+
+.cats li:hover {
+  background: #6b2b2c;
+  -moz-border-radius: 5px;
+  display: block; }
+  .cats li:hover a {
+    color: white; }
+  .cats li:hover .new_posts .number {
+    background: black; }
+
 .advert {
   font-weight: bold;
   display: block;

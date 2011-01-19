@@ -46,7 +46,11 @@
             :javascript
               $(document).ready(function() {
                 $(".cats").hide();
-                $(".advert").delay(10000).slideUp(function(){
+                $(".advert").click(function(){
+                  $(".advert").hide();
+                  $(".cats").slideDown();
+                });
+                $(".advert").delay(10000000).slideUp(function(){
                   $(".cats").slideDown();
                 });
               });
@@ -72,7 +76,14 @@
           .grid_4.alpha.omega.cats
             - for category in @categories
               %li
-                = link_to "#{category.name}", show_posts_category_path(category)
+                .new_posts
+                  - if current_user && !current_user.last_logins.select{|ll|ll.category_id == category.id}.empty? && Post.find(:all, :conditions => ["created_at > ? AND category == ?", current_user.last_logins.find_by_category_id(category).updated_at, category.name]).size > 0
+                    .number
+                      = Post.find(:all, :conditions => ["created_at > ? AND category == ?", current_user.last_logins.find_by_category_id(category).updated_at, category.name]).size
+                  - else
+                    \&nbsp;
+                .link
+                  = link_to "#{category.name}", show_posts_category_path(category)
           .clear
           .red_box_of_love
             = link_to image_tag('action-3.jpg', :style => 'border: none;'), "http://www.abahlali.org/node/269", :target => "_blank"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101213160743) do
+ActiveRecord::Schema.define(:version => 20110119141606) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(:version => 20101213160743) do
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.string   "post_parent_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "last_login", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "last_logins", :force => true do |t|
+    t.integer  "category_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

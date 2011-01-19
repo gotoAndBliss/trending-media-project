@@ -4,6 +4,14 @@ class CategoriesController < ApplicationController
   
   def show_posts
     @category = Category.find_by_name(params[:id])
+    if current_user
+      if !current_user.last_logins.find_by_category_id(@category).blank?
+        current_user.last_logins.find_by_category_id(@category).update_attribute("updated_at", Time.now)
+      else
+        @last_login = LastLogin.new(:user_id => current_user.id, :category_id => @category )
+        @last_login.save
+      end
+    end
     @category_posts = (Post.find(:all, :conditions => { :category => @category.name }).sort {|a,b| b.shwagrithm <=> a.shwagrithm}).paginate(:page => params[:page], :per_page => 10)
   end
   

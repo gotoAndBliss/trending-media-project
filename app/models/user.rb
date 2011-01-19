@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     c.validate_email_field = false
   end
   
+  has_many :last_logins
   has_many :posts
   has_many :votes
   has_many :comments
