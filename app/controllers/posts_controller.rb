@@ -2,7 +2,7 @@ require 'uri'
 
 class PostsController < ApplicationController
   
-  before_filter :require_user, :only => [:edit, :new]
+  before_filter :require_user, :only => [:edit]
   
   def index
     @posts = User.find(params[:user_id]).posts.sort{|x,y| y.created_at <=> x.created_at }.paginate(:page => params[:page], :per_page => 10)
