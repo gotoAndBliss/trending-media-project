@@ -2,6 +2,8 @@ require 'uri'
 
 class PostsController < ApplicationController
   
+  before_filter :require_user, :only => [:edit, :new]
+  
   def index
     @posts = User.find(params[:user_id]).posts.sort{|x,y| y.created_at <=> x.created_at }.paginate(:page => params[:page], :per_page => 10)
 
@@ -130,6 +132,15 @@ class PostsController < ApplicationController
     unless @vote
       @vote = Vote.create(:user_id => current_user.id, :value => 0)
       current_post.votes << @vote
+    end
+  end
+  
+  def require_user
+    unless current_user == Post.find_by_name(params[:id]).user
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to login_url
+      return false
     end
   end
   
