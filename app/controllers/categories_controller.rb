@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
         @last_login.save
       end
     end
-    @category_posts = (Post.find(:all, :conditions => { :category => @category.name }).sort {|a,b| b.shwagrithm <=> a.shwagrithm}).paginate(:page => params[:page], :per_page => 10)
+    @category_posts = (Post.find(:all, :conditions => { :category => @category.name }).sort {|a,b| b.shwagrithm <=> a.shwagrithm}).paginate(:page => params[:page], :per_page => 25)
   end
   
   def index

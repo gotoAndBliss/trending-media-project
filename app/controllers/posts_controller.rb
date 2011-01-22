@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :require_user, :only => [:edit]
   
   def index
-    @posts = User.find(params[:user_id]).posts.sort{|x,y| y.created_at <=> x.created_at }.paginate(:page => params[:page], :per_page => 10)
+    @posts = User.find(params[:user_id]).posts.sort{|x,y| y.created_at <=> x.created_at }.paginate(:page => params[:page], :per_page => 25)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -136,7 +136,8 @@ class PostsController < ApplicationController
   end
   
   def require_user
-    unless current_user == Post.find_by_name(params[:id]).user
+    debugger
+    unless current_user == Post.find(params[:id]).user
       store_location
       flash[:notice] = "You must be logged in to access this page"
       redirect_to login_url
